@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Stevia
+//import Stevia
 import AVFoundation
 
 /// The container for asset (video or image). It containts the YPGridView and YPAssetZoomableView.
@@ -16,30 +16,38 @@ class YPAssetViewContainer: UIView {
     public var zoomableView: YPAssetZoomableView?
     public let grid = YPGridView()
     public let curtain = UIView()
-    public let spinnerView = UIView()
+
+    private lazy var spinner = UIActivityIndicatorView(style: .white)
+    public lazy var spinnerView: UIView = {
+        let view = UIView()
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        return view
+    }()
+
     public let squareCropButton = UIButton()
     public let multipleSelectionButton = UIButton()
     public var onlySquare = YPConfig.library.onlySquare
     public var isShown = true
     
-    private let spinner = UIActivityIndicatorView(style: .white)
+
     private var shouldCropToSquare = YPConfig.library.isSquareByDefault
     private var isMultipleSelection = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         addSubview(grid)
         grid.frame = frame
         clipsToBounds = true
-        
-        for sv in subviews {
-            if let cv = sv as? YPAssetZoomableView {
-                zoomableView = cv
-                zoomableView?.myDelegate = self
-            }
+
+        subviews.compactMap { $0 as? YPAssetZoomableView }.forEach {
+            zoomableView = $0
+            zoomableView?.myDelegate = self
         }
-        
         grid.alpha = 0
         
         let touchDownGR = UILongPressGestureRecognizer(target: self,
@@ -47,19 +55,17 @@ class YPAssetViewContainer: UIView {
         touchDownGR.minimumPressDuration = 0
         touchDownGR.delegate = self
         addGestureRecognizer(touchDownGR)
-        
-        // TODO: Add tap gesture to play/pause. Add double tap gesture to square/unsquare
-        
-        sv(
-            spinnerView.sv(
-                spinner
-            ),
-            curtain
-        )
-        
-        spinner.centerInContainer()
-        spinnerView.fillContainer()
-        curtain.fillContainer()
+
+        [spinnerView, curtain].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: trailingAnchor)
+            ])
+        }
         
         spinner.startAnimating()
         spinnerView.backgroundColor = UIColor.ypLabel.withAlphaComponent(0.3)
@@ -67,25 +73,30 @@ class YPAssetViewContainer: UIView {
         curtain.alpha = 0
         
         if !onlySquare {
-            // Crop Button
             squareCropButton.setImage(YPConfig.icons.cropIcon, for: .normal)
-            sv(squareCropButton)
-            squareCropButton.size(42)
-            |-15-squareCropButton
-            squareCropButton.Bottom == zoomableView!.Bottom - 15
+            squareCropButton.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(squareCropButton)
+            NSLayoutConstraint.activate([
+                squareCropButton.heightAnchor.constraint(equalToConstant: 42),
+                squareCropButton.widthAnchor.constraint(equalToConstant: 42),
+                squareCropButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+                squareCropButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            ])
         }
         
         // Multiple selection button
-        sv(multipleSelectionButton)
-        multipleSelectionButton.size(42)
-        multipleSelectionButton-15-|
+        multipleSelectionButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(multipleSelectionButton)
+        NSLayoutConstraint.activate([
+            multipleSelectionButton.heightAnchor.constraint(equalToConstant: 42),
+            multipleSelectionButton.widthAnchor.constraint(equalToConstant: 42),
+            multipleSelectionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            multipleSelectionButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
         multipleSelectionButton.setImage(YPConfig.icons.multipleSelectionOffIcon, for: .normal)
-        multipleSelectionButton.Bottom == zoomableView!.Bottom - 15
-        
     }
     
     // MARK: - Square button
-
     @objc public func squareCropButtonTapped() {
         if let zoomableView = zoomableView {
             let z = zoomableView.zoomScale
