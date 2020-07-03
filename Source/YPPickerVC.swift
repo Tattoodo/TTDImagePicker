@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Stevia
+import UIKit
 import Photos
 
 protocol ImagePickerDelegate: AnyObject {
@@ -207,9 +207,11 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     }
     
     func setTitleViewWithTitle(aTitle: String) {
-        let titleView = UIView()
+        let titleView = UIStackView()
+        titleView.alignment = .center
         titleView.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        
+        titleView.spacing = 8
+
         let label = UILabel()
         label.text = aTitle
         // Use standard font by default.
@@ -226,11 +228,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         }
         
         if YPConfig.library.options != nil {
-            titleView.sv(
-                label
-            )
-            |-(>=8)-label.centerHorizontally()-(>=8)-|
-            align(horizontally: label)
+            titleView.addArrangedSubview(label)
         } else {
             let arrow = UIImageView()
             arrow.image = YPConfig.icons.arrowDownIcon
@@ -244,21 +242,23 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             }
             
             let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
             button.addTarget(self, action: #selector(navBarTapped), for: .touchUpInside)
             button.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .highlighted)
-            
-            titleView.sv(
-                label,
-                arrow,
-                button
-            )
-            button.fillContainer()
-            |-(>=8)-label.centerHorizontally()-arrow-(>=8)-|
-            align(horizontally: label-arrow)
+
+            titleView.addArrangedSubview(label)
+            titleView.addArrangedSubview(arrow)
+            titleView.addSubview(button)
+
+            NSLayoutConstraint.activate([
+                button.heightAnchor.constraint(equalTo: titleView.heightAnchor),
+                button.widthAnchor.constraint(equalTo: titleView.widthAnchor),
+                button.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
+                button.centerXAnchor.constraint(equalTo: titleView.centerXAnchor)
+            ])
         }
         
         label.firstBaselineAnchor.constraint(equalTo: titleView.bottomAnchor, constant: -14).isActive = true
-        
         titleView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         navigationItem.titleView = titleView
     }
