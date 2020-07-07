@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 import Photos
 
 final class YPLibraryView: UIView {
@@ -19,69 +18,81 @@ final class YPLibraryView: UIView {
     @IBOutlet weak var assetViewContainer: YPAssetViewContainer!
     @IBOutlet weak var assetViewContainerConstraintTop: NSLayoutConstraint!
     
-    let maxNumberWarningView = UIView()
-    let maxNumberWarningLabel = UILabel()
-    let progressView = UIProgressView()
-    let line = UIView()
+    lazy var maxNumberWarningView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .ypSecondarySystemBackground
+        view.isHidden = true
+        return view
+    }()
+
+    lazy var maxNumberWarningLabel: UILabel = {
+        let view = UILabel()
+        view.textAlignment = .center
+        view.font = UIFont(name: "Helvetica Neue", size: 14)
+        return view
+    }()
+
+    lazy var progressView: UIProgressView =  {
+        let view = UIProgressView()
+        view.progressViewStyle = .bar
+        view.trackTintColor = YPConfig.colors.progressBarTrackColor
+        view.progressTintColor = YPConfig.colors.progressBarCompletedColor ?? YPConfig.colors.tintColor
+        view.isHidden = true
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+
+    lazy var line: UIView = {
+        let view = UIView()
+        view.backgroundColor = .ypSystemBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        return view
+    }()
+
     var shouldShowLoader = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        sv(
-            line
-        )
-        
-        layout(
-            assetViewContainer!,
-            |line| ~ 1
-        )
-        
-        line.backgroundColor = .ypSystemBackground
-        
+        addSubview(line)
+        NSLayoutConstraint.activate([
+            line.topAnchor.constraint(equalTo: assetViewContainer.bottomAnchor),
+            line.widthAnchor.constraint(equalTo: assetViewContainer.widthAnchor),
+            line.centerXAnchor.constraint(equalTo: assetViewContainer.centerXAnchor)
+        ])
         setupMaxNumberOfItemsView()
         setupProgressBarView()
     }
     
     /// At the bottom there is a view that is visible when selected a limit of items with multiple selection
     func setupMaxNumberOfItemsView() {
-        // View Hierarchy
-        sv(
-            maxNumberWarningView.sv(
-                maxNumberWarningLabel
-            )
-        )
-        
-        // Layout
-        |maxNumberWarningView|.bottom(0)
-        if #available(iOS 11.0, *) {
-            maxNumberWarningView.Top == safeAreaLayoutGuide.Bottom - 40
-            maxNumberWarningLabel.centerHorizontally().top(11)
-        } else {
-            maxNumberWarningView.height(40)
-            maxNumberWarningLabel.centerInContainer()
-        }
-        
-        // Style
-        maxNumberWarningView.backgroundColor = .ypSecondarySystemBackground
-        maxNumberWarningLabel.font = UIFont(name: "Helvetica Neue", size: 14)
-        maxNumberWarningView.isHidden = true
+        maxNumberWarningView.translatesAutoresizingMaskIntoConstraints = false
+        maxNumberWarningLabel.translatesAutoresizingMaskIntoConstraints = false
+        maxNumberWarningView.addSubview(maxNumberWarningLabel)
+        addSubview(maxNumberWarningView)
+        NSLayoutConstraint.activate([
+            maxNumberWarningLabel.topAnchor.constraint(equalTo: maxNumberWarningView.topAnchor, constant: 11),
+            maxNumberWarningLabel.centerXAnchor.constraint(equalTo: maxNumberWarningView.centerXAnchor),
+            maxNumberWarningLabel.leadingAnchor.constraint(equalTo: maxNumberWarningView.leadingAnchor, constant: 16),
+            maxNumberWarningLabel.trailingAnchor.constraint(equalTo: maxNumberWarningView.trailingAnchor, constant: -16),
+
+            maxNumberWarningView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            maxNumberWarningView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            maxNumberWarningView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            maxNumberWarningView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
     }
     
     /// When video is processing this bar appears
     func setupProgressBarView() {
-        sv(
-            progressView
-        )
-        
-        progressView.height(5)
-        progressView.Top == line.Top
-        progressView.Width == line.Width
-        progressView.progressViewStyle = .bar
-        progressView.trackTintColor = YPConfig.colors.progressBarTrackColor
-        progressView.progressTintColor = YPConfig.colors.progressBarCompletedColor ?? YPConfig.colors.tintColor
-        progressView.isHidden = true
-        progressView.isUserInteractionEnabled = false
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(progressView)
+        NSLayoutConstraint.activate([
+            progressView.heightAnchor.constraint(equalToConstant: 5),
+            progressView.topAnchor.constraint(equalTo: line.topAnchor),
+            progressView.widthAnchor.constraint(equalTo: line.widthAnchor),
+            progressView.centerXAnchor.constraint(equalTo: line.centerXAnchor)
+        ])
     }
 }
 
