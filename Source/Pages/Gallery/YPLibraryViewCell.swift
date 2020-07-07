@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 class YPMultipleSelectionIndicator: UIView {
     
@@ -17,23 +16,30 @@ class YPMultipleSelectionIndicator: UIView {
 
     convenience init() {
         self.init(frame: .zero)
-        
         let size: CGFloat = 20
-        
-        sv(
-            circle,
-            label
-        )
-        
-        circle.fillContainer()
-        circle.size(size)
-        label.fillContainer()
+
+        [circle, label].forEach({
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        })
+        NSLayoutConstraint.activate([
+            circle.topAnchor.constraint(equalTo: topAnchor),
+            circle.bottomAnchor.constraint(equalTo: bottomAnchor),
+            circle.leadingAnchor.constraint(equalTo: leadingAnchor),
+            circle.trailingAnchor.constraint(equalTo: trailingAnchor),
+            circle.heightAnchor.constraint(equalToConstant: size),
+            circle.widthAnchor.constraint(equalToConstant: size),
+
+            label.widthAnchor.constraint(equalTo: widthAnchor),
+            label.heightAnchor.constraint(equalTo: heightAnchor),
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
         
         circle.layer.cornerRadius = size / 2.0
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        
         set(number: nil)
     }
     
@@ -57,32 +63,34 @@ class YPLibraryViewCell: UICollectionViewCell {
     
     var representedAssetIdentifier: String!
     let imageView = UIImageView()
-    let durationLabel = UILabel()
+    let durationLabel = UILabel() //TODO: - add bg alpha color
     let selectionOverlay = UIView()
     let multipleSelectionIndicator = YPMultipleSelectionIndicator()
     
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        sv(
-            imageView,
-            durationLabel,
-            selectionOverlay,
-            multipleSelectionIndicator
-        )
+        [imageView, durationLabel, selectionOverlay, multipleSelectionIndicator].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview($0)
+        }
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-        imageView.fillContainer()
-        selectionOverlay.fillContainer()
-        layout(
-            durationLabel-5-|,
-            5
-        )
-        
-        layout(
-            3,
-            multipleSelectionIndicator-3-|
-        )
+            selectionOverlay.topAnchor.constraint(equalTo: contentView.topAnchor),
+            selectionOverlay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            selectionOverlay.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            selectionOverlay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+
+            durationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            durationLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+
+            multipleSelectionIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 3),
+            multipleSelectionIndicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3)
+        ])
         
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
