@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 class YPAlbumView: UIView {
     
@@ -16,16 +15,19 @@ class YPAlbumView: UIView {
     
     convenience init() {
         self.init(frame: .zero)
-        
-        sv(
-            tableView,
-            spinner
-        )
+        [tableView, spinner].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        }
         // TableView needs to be the first subview for it to automatically adjust its content inset with the NavBar
-        
-        spinner.centerInContainer()
-        tableView.fillContainer()
-        
+        NSLayoutConstraint.activate([
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
         backgroundColor = .ypSystemBackground
     }
 }
