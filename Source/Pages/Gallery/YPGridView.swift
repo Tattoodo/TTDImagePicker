@@ -5,6 +5,7 @@
 //  Created by Sacha Durand Saint Omer on 15/11/2016.
 //  Copyright © 2016 Yummypets. All rights reserved.
 //
+import UIKit
 
 class YPGridView: UIView {
     
