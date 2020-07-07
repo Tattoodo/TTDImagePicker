@@ -6,8 +6,6 @@
 //  Copyright © 2016 Yummypets. All rights reserved.
 //
 
-import Stevia
-
 class YPGridView: UIView {
     
     let line1 = UIView()
@@ -18,36 +16,32 @@ class YPGridView: UIView {
     convenience init() {
         self.init(frame: .zero)
         isUserInteractionEnabled = false
-        sv(
-            line1,
-            line2,
-            line3,
-            line4
-        )
-        
         let stroke: CGFloat = 0.5
-        line1.top(0).width(stroke).bottom(0)
-        line1.Right == 33 % Right
-        
-        line2.top(0).width(stroke).bottom(0)
-        line2.Right == 66 % Right
-        
-        line3.left(0).height(stroke).right(0)
-        line3.Bottom == 33 % Bottom
-        
-        line4.left(0).height(stroke).right(0)
-        line4.Bottom == 66 % Bottom
-        
-        let color = UIColor.white.withAlphaComponent(0.6)
-        line1.backgroundColor = color
-        line2.backgroundColor = color
-        line3.backgroundColor = color
-        line4.backgroundColor = color
-        
-        applyShadow(to: line1)
-        applyShadow(to: line2)
-        applyShadow(to: line3)
-        applyShadow(to: line4)
+
+        [line1, line2, line3, line4].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+            applyShadow(to: $0)
+            addSubview($0)
+        }
+
+        [line1, line2].enumerated().forEach {
+            let numberInArray = CGFloat($0.offset) + 1.0
+            let view = $0.element
+            view.widthAnchor.constraint(equalToConstant: stroke).isActive = true
+            let constraint = NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: numberInArray == 1 ? 0.77 : 1.33, constant: 0)
+            constraint.isActive = true
+            view.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        }
+
+        [line3, line4].enumerated().forEach {
+            let numberInArray = CGFloat($0.offset) + 1.0
+            let view = $0.element
+            view.heightAnchor.constraint(equalToConstant: stroke).isActive = true
+            let constraint = NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: numberInArray == 1 ? 0.77 : 1.33, constant: 0)
+            constraint.isActive = true
+            view.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        }
     }
     
     func applyShadow(to view: UIView) {
