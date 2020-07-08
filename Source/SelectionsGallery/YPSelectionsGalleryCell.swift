@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 public protocol YPSelectionsGalleryCellDelegate: class {
     func selectionsGalleryCellDidTapRemove(cell: YPSelectionsGalleryCell)
@@ -23,41 +22,46 @@ public class YPSelectionsGalleryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
-        sv(
-            imageView,
-            editIcon,
-            editSquare,
-            removeButton
-        )
-        
-        imageView.fillContainer()
-        editIcon.size(32).left(12).bottom(12)
-        editSquare.size(16)
-        editSquare.CenterY == editIcon.CenterY
-        editSquare.CenterX == editIcon.CenterX
-        
-        removeButton.top(12).trailing(12)
-        
+
+        [imageView, editIcon, editSquare, removeButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview($0)
+        }
+
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+            editIcon.heightAnchor.constraint(equalToConstant: 32),
+            editIcon.widthAnchor.constraint(equalToConstant: 32),
+            editIcon.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            editIcon.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+
+            editSquare.heightAnchor.constraint(equalToConstant: 16),
+            editSquare.widthAnchor.constraint(equalToConstant: 16),
+            editSquare.centerYAnchor.constraint(equalTo: editIcon.centerYAnchor),
+            editSquare.centerXAnchor.constraint(equalTo: editIcon.centerXAnchor),
+
+            removeButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            removeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+        ])
+
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize(width: 4, height: 7)
         layer.shadowRadius = 5
         layer.backgroundColor = UIColor.clear.cgColor
-        imageView.style { i in
-            i.clipsToBounds = true
-            i.contentMode = .scaleAspectFill
-        }
-        editIcon.style { v in
-            v.backgroundColor = UIColor.ypSystemBackground
-            v.layer.cornerRadius = 16
-        }
-        editSquare.style { v in
-            v.layer.borderWidth = 1
-            v.layer.borderColor = UIColor.ypLabel.cgColor
-        }
+
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        editIcon.backgroundColor = UIColor.ypSystemBackground
+        editIcon.layer.cornerRadius = 16
+        editSquare.layer.borderWidth = 1
+        editSquare.layer.borderColor = UIColor.ypLabel.cgColor
+
         removeButton.setImage(YPConfig.icons.removeImage, for: .normal)
-    
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
     }
     

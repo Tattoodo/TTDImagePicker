@@ -55,7 +55,6 @@ class YPFiltersView: UIView {
 
             filtersLoader.centerYAnchor.constraint(equalTo: collectionViewContainer.centerYAnchor),
             filtersLoader.centerXAnchor.constraint(equalTo: collectionViewContainer.centerXAnchor)
-
         ])
         
         backgroundColor = .offWhiteOrBlack

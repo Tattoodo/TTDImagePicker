@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 class YPSelectionsGalleryView: UIView {
     
@@ -15,21 +14,17 @@ class YPSelectionsGalleryView: UIView {
     
     convenience init() {
         self.init(frame: .zero)
-    
-        sv(
-            collectionView
-        )
-        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(collectionView)
+
         // Layout collectionView
-        collectionView.heightEqualsWidth()
-        if #available(iOS 11.0, *) {
-            collectionView.Right == safeAreaLayoutGuide.Right
-            collectionView.Left == safeAreaLayoutGuide.Left
-        } else {
-            |collectionView|
-        }
-        collectionView.CenterY == CenterY - 30
-        
+        NSLayoutConstraint.activate([
+            collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 1),
+            collectionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+        ])
+
         // Apply style
         backgroundColor = YPConfig.colors.selectionsBackgroundColor
         collectionView.backgroundColor = .clear
