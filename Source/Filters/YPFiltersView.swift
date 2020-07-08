@@ -6,7 +6,7 @@
 //  Copyright © 2016 octopepper. All rights reserved.
 //
 
-import Stevia
+import UIKit
 
 class YPFiltersView: UIView {
     
@@ -22,26 +22,41 @@ class YPFiltersView: UIView {
         filtersLoader.hidesWhenStopped = true
         filtersLoader.startAnimating()
         filtersLoader.color = YPConfig.colors.tintColor
-        
-        sv(
-            imageView,
-            collectionViewContainer.sv(
-                filtersLoader,
-                collectionView
-            )
-        )
-        
+
+        [imageView, collectionViewContainer].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        }
+
+        [filtersLoader, collectionView].compactMap{$0}.forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            collectionViewContainer.addSubview($0)
+        }
+
         let isIphone4 = UIScreen.main.bounds.height == 480
         let sideMargin: CGFloat = isIphone4 ? 20 : 0
-        
-        |-sideMargin-imageView.top(0)-sideMargin-|
-        |-sideMargin-collectionViewContainer-sideMargin-|
-        collectionViewContainer.bottom(0)
-        imageView.Bottom == collectionViewContainer.Top
-        |collectionView.centerVertically().height(160)|
-        filtersLoader.centerInContainer()
-        
-        imageView.heightEqualsWidth()
+
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideMargin),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideMargin),
+            imageView.bottomAnchor.constraint(equalTo: collectionViewContainer.topAnchor),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1),
+
+            collectionViewContainer.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: sideMargin),
+            collectionViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -sideMargin),
+
+
+            collectionView.centerYAnchor.constraint(equalTo: collectionViewContainer.centerYAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 160),
+            collectionView.leadingAnchor.constraint(equalTo: collectionViewContainer.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: collectionViewContainer.trailingAnchor),
+
+            filtersLoader.centerYAnchor.constraint(equalTo: collectionViewContainer.centerYAnchor),
+            filtersLoader.centerXAnchor.constraint(equalTo: collectionViewContainer.centerXAnchor)
+
+        ])
         
         backgroundColor = .offWhiteOrBlack
         imageView.contentMode = .scaleAspectFit
