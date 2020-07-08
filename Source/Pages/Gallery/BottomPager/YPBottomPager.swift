@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 protocol YPBottomPagerDelegate: class {
     func pagerScrollViewDidScroll(_ scrollView: UIScrollView)
@@ -27,7 +26,7 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
     }
     
     override open func loadView() {
-        self.automaticallyAdjustsScrollViewInsets = false
+        v.scrollView.contentInsetAdjustmentBehavior = .never
         v.scrollView.delegate = self
         view = v
     }
@@ -54,12 +53,15 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
             c.willMove(toParent: self)
             addChild(c)
             let x: CGFloat = CGFloat(index) * viewWidth
-            v.scrollView.sv(c.view)
+            c.view.translatesAutoresizingMaskIntoConstraints = false
+            v.scrollView.addSubview(c.view)
             c.didMove(toParent: self)
             c.view.left(x)
             c.view.top(0)
             c.view.width(viewWidth)
-            equal(heights: c.view, v.scrollView)
+            NSLayoutConstraint.activate([
+                c.view.heightAnchor.constraint(equalTo: v.scrollView.heightAnchor)
+            ])
         }
         
         let scrollableWidth: CGFloat = CGFloat(controllers.count) * CGFloat(viewWidth)

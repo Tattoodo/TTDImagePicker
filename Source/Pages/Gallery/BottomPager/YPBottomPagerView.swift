@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 final class YPBottomPagerView: UIView {
     
@@ -16,27 +15,22 @@ final class YPBottomPagerView: UIView {
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = .offWhiteOrBlack
-        
-        sv(
-            scrollView,
-            header
-        )
-        
-        layout(
-            0,
-            |scrollView|,
-            0,
-            |header| ~ 44
-        )
-        
-        if #available(iOS 11.0, *) {
-            header.Bottom == safeAreaLayoutGuide.Bottom
-        } else {
-            header.bottom(0)
+        backgroundColor = .red
+        [scrollView, header].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
         }
-        header.heightConstraint?.constant = (YPConfig.hidesBottomBar || (YPConfig.screens.count == 1)) ? 0 : 44
-        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+            header.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            header.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            header.heightAnchor.constraint(equalToConstant: (YPConfig.hidesBottomBar || (YPConfig.screens.count == 1)) ? 0 : 44),
+            header.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            header.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
+        ])
         clipsToBounds = false
         setupScrollView()
     }
