@@ -118,7 +118,7 @@ override open func viewDidLoad() {
                         completion(photo)
                     }
                 }
-                
+
                 if YPConfig.showsPhotoFilters {
                     let filterVC = YPPhotoFiltersVC(inputPhoto: photo,
                                                     isFromSelectionVC: false)

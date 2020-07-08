@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 class YPLoadingView: UIView {
     
@@ -21,12 +20,13 @@ class YPLoadingView: UIView {
         let stack = UIStackView(arrangedSubviews: [spinner, processingLabel])
         stack.axis = .vertical
         stack.spacing = 20
-        sv(
-            stack
-        )
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stack)
         
         // Layout
-        stack.centerInContainer()
+        stack.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        stack.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
         processingLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         
         // Style
