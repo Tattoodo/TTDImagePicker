@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 import AVFoundation
 
 /// A video view that contains video layer, supports play, pause and other actions.
@@ -50,16 +49,27 @@ public class YPVideoView: UIView {
         playImageView.alpha = 0.8
         playerLayer.videoGravity = .resizeAspect
         previewImageView.contentMode = .scaleAspectFit
-        
-        sv(
-            previewImageView,
-            playerView,
-            playImageView
-        )
-        
-        previewImageView.fillContainer()
-        playerView.fillContainer()
-        playImageView.centerInContainer()
+
+        [previewImageView, playerView, playImageView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
+        }
+        NSLayoutConstraint.activate([
+            previewImageView.topAnchor.constraint(equalTo: topAnchor),
+            previewImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            previewImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            previewImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+            playerView.topAnchor.constraint(equalTo: topAnchor),
+            playerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            playerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            playerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+
+            playImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            playImageView.centerYAnchor.constraint(equalTo: centerYAnchor)
+
+        ])
+
         playerView.layer.addSublayer(playerLayer)
     }
     
