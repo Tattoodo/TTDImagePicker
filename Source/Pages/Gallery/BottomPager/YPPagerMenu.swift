@@ -15,7 +15,7 @@ final class YPPagerMenu: UIView { //TODO: selected segment control
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = .red
+        backgroundColor = .offWhiteOrBlack
         clipsToBounds = true
     }
     
