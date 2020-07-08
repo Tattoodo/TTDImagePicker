@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import Stevia
 
-final class YPPagerMenu: UIView {
+final class YPPagerMenu: UIView { //TODO: selected segment control
     
     var didSetConstraints = false
     var menuItems = [YPMenuItem]()
     
     convenience init() {
         self.init(frame: .zero)
-        backgroundColor = .offWhiteOrBlack
+        backgroundColor = .red
         clipsToBounds = true
     }
     
@@ -26,15 +25,20 @@ final class YPPagerMenu: UIView {
         let menuItemWidth: CGFloat = UIScreen.main.bounds.width / CGFloat(menuItems.count)
         var previousMenuItem: YPMenuItem?
         for m in menuItems {
-            sv(
-                m
-            )
+            m.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(m)
+
+            NSLayoutConstraint.activate([
+                m.topAnchor.constraint(equalTo: topAnchor),
+                m.bottomAnchor.constraint(equalTo: bottomAnchor),
+                m.widthAnchor.constraint(equalToConstant: menuItemWidth)
+            ])
             
             m.fillVertically().width(menuItemWidth)
             if let pm = previousMenuItem {
-                pm-0-m
+                NSLayoutConstraint.activate([ m.leadingAnchor.constraint(equalTo: pm.trailingAnchor, constant: 0)])
             } else {
-                |m
+                NSLayoutConstraint.activate([  m.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0)])
             }
             
             previousMenuItem = m

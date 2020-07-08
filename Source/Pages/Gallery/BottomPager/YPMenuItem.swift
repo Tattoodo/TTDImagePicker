@@ -9,7 +9,7 @@
 import UIKit
 import Stevia
 
-final class YPMenuItem: UIView {
+final class YPMenuItem: UIView { //TODO: - images
     
     var textLabel = UILabel()
     var button = UIButton()
