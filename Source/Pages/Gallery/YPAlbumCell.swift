@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stevia
 
 class YPAlbumCell: UITableViewCell {
     
@@ -24,19 +23,23 @@ class YPAlbumCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.addArrangedSubview(title)
         stackView.addArrangedSubview(numberOfItems)
-        
-        sv(
-            thumbnail,
-            stackView
-        )
-        
-        layout(
-            6,
-            |-10-thumbnail.size(78),
-            6
-        )
-        
-        align(horizontally: thumbnail-10-stackView)
+
+        [thumbnail, stackView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview($0)
+        }
+
+        NSLayoutConstraint.activate([
+            thumbnail.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            thumbnail.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            thumbnail.heightAnchor.constraint(equalToConstant: 78),
+            thumbnail.widthAnchor.constraint(equalToConstant: 78),
+            thumbnail.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+
+            stackView.centerYAnchor.constraint(equalTo: thumbnail.centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: thumbnail.trailingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6)
+        ])
         
         thumbnail.contentMode = .scaleAspectFill
         thumbnail.clipsToBounds = true
