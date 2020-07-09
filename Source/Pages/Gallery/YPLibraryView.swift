@@ -54,6 +54,7 @@ final class YPLibraryView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        collectionView.contentInset.top = 4
         addSubview(line)
         NSLayoutConstraint.activate([
             line.topAnchor.constraint(equalTo: assetViewContainer.bottomAnchor),

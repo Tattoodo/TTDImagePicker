@@ -93,6 +93,8 @@ class YPLibraryViewCell: UICollectionViewCell {
         ])
         
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         durationLabel.textColor = .white
         durationLabel.font = .systemFont(ofSize: 12)

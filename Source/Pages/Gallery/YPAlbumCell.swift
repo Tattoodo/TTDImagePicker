@@ -43,6 +43,8 @@ class YPAlbumCell: UITableViewCell {
         
         thumbnail.contentMode = .scaleAspectFill
         thumbnail.clipsToBounds = true
+        thumbnail.layer.cornerRadius = 4
+        thumbnail.layer.masksToBounds = true
         
         title.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
         numberOfItems.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.regular)

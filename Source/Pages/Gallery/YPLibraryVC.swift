@@ -21,16 +21,17 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
     internal let mediaManager = LibraryMediaManager()
     internal var latestImageTapped = ""
     internal let panGestureHelper = PanGestureHelper()
+    private let mediaType: YPlibraryMediaType
 
     // MARK: - Init
-    
-    public required init(items: [YPMediaItem]?) {
+    public required init(items: [YPMediaItem]?, mediaType: YPlibraryMediaType) {
+        self.mediaType = mediaType
         super.init(nibName: nil, bundle: nil)
         title = YPConfig.wordings.libraryTitle
     }
     
-    public convenience init() {
-        self.init(items: nil)
+    public convenience init(mediaType: YPlibraryMediaType) {
+        self.init(items: nil, mediaType: mediaType)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -215,7 +216,7 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
     
     // MARK: - Permissions
     
-    func doAfterPermissionCheck(block:@escaping () -> Void) {
+    func doAfterPermissionCheck(block: @escaping () -> Void) {
         checkPermissionToAccessPhotoLibrary { hasPermission in
             if hasPermission {
                 block()
@@ -264,7 +265,7 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
     func refreshMediaRequest() {
         
         let options = buildPHFetchOptions()
-        
+
         if let collection = mediaManager.collection {
             mediaManager.fetchResult = PHAsset.fetchAssets(in: collection, options: options)
         } else {
@@ -282,18 +283,15 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
             }
         } else {
             delegate?.noPhotosForOptions()
+            //TODO: - show empty state
         }
         scrollToTop()
     }
     
     func buildPHFetchOptions() -> PHFetchOptions {
-        // Sorting condition
-        if let userOpt = YPConfig.library.options {
-            return userOpt
-        }
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        options.predicate = YPConfig.library.mediaType.predicate()
+        options.predicate = mediaType.predicate()
         return options
     }
     
@@ -351,7 +349,6 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
     }
     
     // MARK: - Verification
-    
     private func fitsVideoLengthLimits(asset: PHAsset) -> Bool {
         guard asset.mediaType == .video else {
             return true

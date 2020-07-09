@@ -9,7 +9,7 @@
 import Foundation
 
 public enum YPPickerScreen {
-    case library
+    case photoLibrary
+    case videoLibrary
     case photo
-    case video
 }

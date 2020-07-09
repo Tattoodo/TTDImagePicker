@@ -66,7 +66,7 @@ public struct YPImagePickerConfiguration {
     
     /// Defines which screens are shown at launch, and their order.
     /// Default value is `[.library, .photo]`
-    public var screens: [YPPickerScreen] = [.library, .photo]
+    public var screens: [YPPickerScreen] = [.photoLibrary, .videoLibrary, .photo]
 
     /// Adds a Crop step in the photo taking process, after filters.  Defaults to .none
     public var showsCrop: YPCropType = .none
@@ -188,13 +188,13 @@ public struct YPConfigLibrary {
     public var minNumberOfItems = 1
 
     /// Set the number of items per row in collection view. Defaults to 4.
-    public var numberOfItemsInRow: Int = 4
+    public var numberOfItemsInRow: Int = 3
 
     /// Set the spacing between items in collection view. Defaults to 1.0.
-    public var spacingBetweenItems: CGFloat = 1.0
+    public var spacingBetweenItems: CGFloat = 4.0
 
     /// Allow to skip the selections gallery when selecting the multiple media items. Defaults to false.
-    public var skipSelectionsGallery = false
+    public var skipSelectionsGallery = true
     
     /// Allow to preselected media items
     public var preselectedItems: [YPMediaItem]?
