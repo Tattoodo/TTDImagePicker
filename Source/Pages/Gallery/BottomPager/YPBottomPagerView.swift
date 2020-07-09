@@ -9,7 +9,7 @@
 import UIKit
 
 final class YPBottomPagerView: UIView {
-    
+    var headerBottomConstraint: NSLayoutConstraint!
     var header = YPPagerMenu()
     var scrollView = UIScrollView()
     
@@ -20,13 +20,14 @@ final class YPBottomPagerView: UIView {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
+        headerBottomConstraint =  header.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
             header.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            header.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            headerBottomConstraint,
             header.heightAnchor.constraint(equalToConstant: (YPConfig.hidesBottomBar || (YPConfig.screens.count == 1)) ? 0 : 44),
             header.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             header.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)

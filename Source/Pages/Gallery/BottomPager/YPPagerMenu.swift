@@ -9,7 +9,7 @@
 import UIKit
 
 final class YPPagerMenu: UIView { //TODO: selected segment control
-    
+    var bottomConstraint: NSLayoutConstraint!
     var didSetConstraints = false
     var menuItems = [YPMenuItem]()
     
@@ -33,12 +33,11 @@ final class YPPagerMenu: UIView { //TODO: selected segment control
                 m.bottomAnchor.constraint(equalTo: bottomAnchor),
                 m.widthAnchor.constraint(equalToConstant: menuItemWidth)
             ])
-            
-            m.fillVertically().width(menuItemWidth)
+
             if let pm = previousMenuItem {
                 NSLayoutConstraint.activate([ m.leadingAnchor.constraint(equalTo: pm.trailingAnchor, constant: 0)])
             } else {
-                NSLayoutConstraint.activate([  m.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0)])
+                NSLayoutConstraint.activate([ m.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0)])
             }
             
             previousMenuItem = m

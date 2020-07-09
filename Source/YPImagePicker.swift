@@ -152,10 +152,14 @@ override open func viewDidLoad() {
     }
     
     private func setupLoadingView() {
-        view.sv(
-            loadingView
-        )
-        loadingView.fillContainer()
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         loadingView.alpha = 0
     }
 }

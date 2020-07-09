@@ -55,13 +55,13 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
             let x: CGFloat = CGFloat(index) * viewWidth
             c.view.translatesAutoresizingMaskIntoConstraints = false
             v.scrollView.addSubview(c.view)
-            c.didMove(toParent: self)
-            c.view.left(x)
-            c.view.top(0)
-            c.view.width(viewWidth)
             NSLayoutConstraint.activate([
-                c.view.heightAnchor.constraint(equalTo: v.scrollView.heightAnchor)
+                c.view.heightAnchor.constraint(equalTo: v.scrollView.heightAnchor),
+                c.view.widthAnchor.constraint(equalToConstant: viewWidth),
+                c.view.topAnchor.constraint(equalTo: v.scrollView.topAnchor),
+                c.view.leadingAnchor.constraint(equalTo: v.scrollView.leadingAnchor, constant: x)
             ])
+            c.didMove(toParent: self)
         }
         
         let scrollableWidth: CGFloat = CGFloat(controllers.count) * CGFloat(viewWidth)

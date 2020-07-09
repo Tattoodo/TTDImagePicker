@@ -144,7 +144,8 @@ extension YPAssetViewContainer: YPAssetZoomableViewDelegate {
         // but the controll for appearing it still in videoView.
         if zoomableView.videoView.playImageView.isDescendant(of: self) == false {
             self.addSubview(zoomableView.videoView.playImageView)
-            zoomableView.videoView.playImageView.centerInContainer()
+            zoomableView.videoView.playImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            zoomableView.videoView.playImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         }
     }
     
