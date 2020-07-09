@@ -15,7 +15,11 @@ protocol ImagePickerDelegate: AnyObject {
 }
 
 open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
-    
+
+    private var currentLibraryVC: YPLibraryVC? {
+        mode == .photoLibraryMode ? photoLibraryVC : videoLibraryVC
+    }
+
     let albumsManager = YPAlbumsManager()
     var shouldHideStatusBar = false
     var initialStatusBarHidden = false
@@ -165,10 +169,8 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     func stopCurrentCamera() {
         switch mode {
-        case .videoLibraryMode:
-            videoLibraryVC?.pausePlayer()
-        case .photoLibraryMode:
-            photoLibraryVC?.pausePlayer()
+        case .videoLibraryMode, .photoLibraryMode:
+            currentLibraryVC?.pausePlayer()
         case .cameraMode:
             cameraVC?.stopCamera()
         }
@@ -187,7 +189,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         navVC.navigationBar.tintColor = .ypLabel
         
         vc.didSelectAlbum = { [weak self] album in
-            self?.photoLibraryVC?.setAlbum(album)
+            self?.currentLibraryVC?.setAlbum(album)
             self?.setTitleViewWithTitle(aTitle: album.title)
             navVC.dismiss(animated: true, completion: nil)
         }
@@ -258,24 +260,15 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            target: self,
                                                            action: #selector(close))
         switch mode { //TODO: refactor this
-        case .videoLibraryMode:
-            setTitleViewWithTitle(aTitle: videoLibraryVC?.title ?? "")
+        case .videoLibraryMode, .photoLibraryMode:
+            setTitleViewWithTitle(aTitle: currentLibraryVC?.title ?? "")
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
                                                                 style: .done,
                                                                 target: self,
                                                                 action: #selector(done))
             navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
             // Disable Next Button until minNumberOfItems is reached.
-            navigationItem.rightBarButtonItem?.isEnabled = photoLibraryVC!.selection.count >= YPConfig.library.minNumberOfItems
-        case .photoLibraryMode:
-            setTitleViewWithTitle(aTitle: photoLibraryVC?.title ?? "")
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
-                                                                style: .done,
-                                                                target: self,
-                                                                action: #selector(done))
-            navigationItem.rightBarButtonItem?.tintColor = YPConfig.colors.tintColor
-            // Disable Next Button until minNumberOfItems is reached.
-            navigationItem.rightBarButtonItem?.isEnabled = photoLibraryVC!.selection.count >= YPConfig.library.minNumberOfItems
+            navigationItem.rightBarButtonItem?.isEnabled = currentLibraryVC!.selection.count >= YPConfig.library.minNumberOfItems
         case .cameraMode:
             navigationItem.titleView = nil
             title = cameraVC?.title
@@ -286,7 +279,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     @objc
     func close() {
         // Cancelling exporting of all videos
-        if let libraryVC = photoLibraryVC {
+        if let libraryVC = currentLibraryVC {
             libraryVC.mediaManager.forseCancelExporting()
         }
         self.didClose?()
@@ -295,11 +288,10 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     // When pressing "Next"
     @objc
     func done() {
-        guard let libraryVC = photoLibraryVC else { print("⚠️ YPPickerVC >>> YPLibraryVC deallocated"); return }
-        
-        if mode == .photoLibraryMode {
-            libraryVC.doAfterPermissionCheck { [weak self] in
-                libraryVC.selectedMedia(photoCallback: { photo in
+        guard let currentLibraryVC = currentLibraryVC else { print("⚠️ YPPickerVC >>> YPLibraryVC deallocated"); return }
+        if mode == .photoLibraryMode || mode == .videoLibraryMode {
+            currentLibraryVC.doAfterPermissionCheck { [weak self] in
+                currentLibraryVC.selectedMedia(photoCallback: { photo in
                     self?.didSelectItems?([YPMediaItem.photo(p: photo)])
                 }, videoCallback: { video in
                     self?.didSelectItems?([YPMediaItem
@@ -353,9 +345,7 @@ extension YPPickerVC: YPLibraryViewDelegate {
         updateUI()
     }
     
-    public func noPhotosForOptions() {
-//        self.dismiss(animated: true) {
-//            self.imagePickerDelegate?.noPhotos()
-//        }
+    public func noPhotosForOptions() { //TODO: - clarify what to do
+        self.imagePickerDelegate?.noPhotos()
     }
 }
