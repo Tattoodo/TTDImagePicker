@@ -11,7 +11,7 @@
 "YPImagePickerPermissionDeniedPopupGrantPermission" = "Verleen toestemming";
 "YPImagePickerPermissionDeniedPopupMessage" = "Verleen alstublieft toestemming";
 "YPImagePickerPermissionDeniedPopupTitle" = "Toestemming geweigerd";
-"YPImagePickerPhoto" = "Foto";
+"YPImagePickerPhoto" = "Camera";
 "YPImagePickerProcessing" = "Verwerken...";
 "YPImagePickerSave" = "Bewaar";
 "YPImagePickerTrim" = "Inkorten";

@@ -11,7 +11,7 @@
 "YPImagePickerPermissionDeniedPopupGrantPermission" = "允許存取";
 "YPImagePickerPermissionDeniedPopupMessage" = "請允許存取";
 "YPImagePickerPermissionDeniedPopupTitle" = "拒絕存取";
-"YPImagePickerPhoto" = "拍照";
+"YPImagePickerPhoto" = "相机";
 "YPImagePickerProcessing" = "處理中..";
 "YPImagePickerSave" = "儲存";
 "YPImagePickerTrim" = "剪輯";

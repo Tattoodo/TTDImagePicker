@@ -11,7 +11,7 @@
 "YPImagePickerPermissionDeniedPopupGrantPermission" = "Настроить разрешения";
 "YPImagePickerPermissionDeniedPopupMessage" = "Пожалуйста, разрешите доступ";
 "YPImagePickerPermissionDeniedPopupTitle" = "Не хватает полномочий";
-"YPImagePickerPhoto" = "Фото";
+"YPImagePickerPhoto" = "Камера";
 "YPImagePickerProcessing" = "Обработка..";
 "YPImagePickerSave" = "Сохранить";
 "YPImagePickerTrim" = "Обрезать";

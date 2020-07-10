@@ -11,7 +11,7 @@
 "YPImagePickerPermissionDeniedPopupGrantPermission" = "Donner la permission";
 "YPImagePickerPermissionDeniedPopupMessage" = "Vous devez autoriser l'accès";
 "YPImagePickerPermissionDeniedPopupTitle" = "Permission refusée";
-"YPImagePickerPhoto" = "Photo"; //ignore-same-translation-warning
+"YPImagePickerPhoto" = "Caméra"; //ignore-same-translation-warning
 "YPImagePickerProcessing" = "Chargement..";
 "YPImagePickerSave" = "Enregister";
 "YPImagePickerTrim" = "Couper";
