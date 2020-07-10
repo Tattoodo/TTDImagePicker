@@ -40,8 +40,8 @@ public struct YPImagePickerConfiguration {
     /// Use this property to modify the default colors provided.
     public var colors = YPColors()
     
-    /// Set this to true if you want to force the camera output to be a squared image. Defaults to true
-    public var onlySquareImagesFromCamera = true
+    /// Set this to true if you want to force the camera output to be a squared image. Defaults to false
+    public var onlySquareImagesFromCamera = false
     
     /// Enables selecting the front camera by default, useful for avatars. Defaults to false
     public var usesFrontCamera = false

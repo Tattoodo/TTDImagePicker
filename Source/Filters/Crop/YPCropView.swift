@@ -56,24 +56,6 @@ class YPCropView: UIView {
 
 
         ])
-        //        layout(
-        //            0,
-        //            |topCurtain|,
-        //            |cropArea|,
-        //            |bottomCurtain|,
-        //            0
-        //        )
-        //        |toolbar|
-        //        if #available(iOS 11.0, *) {
-        //            toolbar.Bottom == safeAreaLayoutGuide.Bottom
-        //        } else {
-        //            toolbar.bottom(0)
-        //        }
-        
-
-        //        cropArea.Height == cropArea.Width * r
-        //        cropArea.centerVertically()
-        
         // Fit image differently depnding on its ratio.
         let imageRatio: Double = Double(image.size.width / image.size.height)
         if ratio > imageRatio {

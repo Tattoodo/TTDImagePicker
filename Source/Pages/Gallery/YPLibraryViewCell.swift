@@ -82,7 +82,7 @@ class YPLibraryViewCell: UICollectionViewCell {
         return view
     }()
 
-    let durationLabel = UILabel() //TODO: - add bg alpha color
+    let durationLabel = UILabel()
     let selectionOverlay = UIView()
     let multipleSelectionIndicator = YPMultipleSelectionIndicator()
     
