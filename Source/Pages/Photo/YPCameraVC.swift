@@ -23,7 +23,8 @@ public class YPCameraVC: UIViewController, UIGestureRecognizerDelegate, YPPermis
         self.v = YPCameraView(overlayView: YPConfig.overlayView)
         super.init(nibName: nil, bundle: nil)
         title = YPConfig.wordings.cameraTitle
-        
+        tabBarItem.image = imageFromBundle("cameraUnselected")
+        tabBarItem.selectedImage = imageFromBundle("cameraSelected")
         YPDeviceOrientationHelper.shared.startDeviceOrientationNotifier { _ in }
     }
     

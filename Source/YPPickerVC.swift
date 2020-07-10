@@ -49,9 +49,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = YPConfig.colors.safeAreaBackgroundColor
-        
         delegate = self
         
         // Force Library only when using `minNumberOfItems`.
@@ -120,7 +118,6 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraVC?.v.shotButton.isEnabled = true
-        
         updateMode(with: currentController)
     }
     
@@ -261,7 +258,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            action: #selector(close))
         switch mode { //TODO: refactor this
         case .videoLibraryMode:
-            setTitleViewWithTitle(aTitle: "Videos", includeAlbumButton: false)
+            setTitleViewWithTitle(aTitle: "Videos", includeAlbumButton: false) //TODO: localize
         case .photoLibraryMode:
             setTitleViewWithTitle(aTitle: currentLibraryVC?.title ?? "")
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
@@ -347,7 +344,7 @@ extension YPPickerVC: YPLibraryViewDelegate {
         updateUI()
     }
     
-    public func noPhotosForOptions() { //TODO: - clarify what to do
+    public func noPhotosForOptions() {
         self.imagePickerDelegate?.noPhotos()
     }
 }

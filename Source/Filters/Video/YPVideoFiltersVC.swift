@@ -55,8 +55,8 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
         
         coverThumbSelectorView.thumbBorderColor = YPConfig.colors.coverSelectorBorderColor
         
-        trimBottomItem.textLabel.text = YPConfig.wordings.trim
-        coverBottomItem.textLabel.text = YPConfig.wordings.cover
+//        trimBottomItem.textLabel.text = YPConfig.wordings.trim
+//        coverBottomItem.textLabel.text = YPConfig.wordings.cover
 
         trimBottomItem.button.addTarget(self, action: #selector(selectTrim), for: .touchUpInside)
         coverBottomItem.button.addTarget(self, action: #selector(selectCover), for: .touchUpInside)

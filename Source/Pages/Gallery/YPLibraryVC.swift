@@ -28,6 +28,9 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
         self.mediaType = mediaType
         super.init(nibName: nil, bundle: nil)
         title = YPConfig.wordings.libraryTitle
+        var isImagesGallery = mediaType == .photo
+        tabBarItem.selectedImage = imageFromBundle(isImagesGallery ? "imageGallerySelected" : "videoGallerySelected")
+        tabBarItem.image = imageFromBundle(isImagesGallery ? "imageGalleryUnselected" : "videoGalleryUnselected")
     }
     
     public convenience init(mediaType: YPlibraryMediaType) {
@@ -65,7 +68,7 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
         if YPConfig.library.defaultMultipleSelection {
             multipleSelectionButtonTapped()
         }
-        v.assetViewContainer.multipleSelectionButton.isHidden = !(YPConfig.library.maxNumberOfItems > 1)
+        v.assetViewContainer.multipleSelectionButton.isHidden = true// !(YPConfig.library.maxNumberOfItems > 1) //TODO: UNHIDE WHEN NEEDED
         v.maxNumberWarningLabel.text = String(format: YPConfig.wordings.warningMaxItemsLimit, YPConfig.library.maxNumberOfItems)
         
         if let preselectedItems = YPConfig.library.preselectedItems {

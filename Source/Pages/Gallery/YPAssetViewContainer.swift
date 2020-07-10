@@ -84,6 +84,7 @@ class YPAssetViewContainer: UIView {
         }
         
         // Multiple selection button
+        
         multipleSelectionButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(multipleSelectionButton)
         NSLayoutConstraint.activate([
