@@ -37,7 +37,7 @@ class YPAlbumsManager {
                     let r = PHAsset.fetchKeyAssets(in: assetCollection, options: nil)
                     if let first = r?.firstObject {
                         let deviceScale = UIScreen.main.scale
-                        let targetSize = CGSize(width: 78*deviceScale, height: 78*deviceScale)
+                        let targetSize = CGSize(width: 78 * deviceScale, height: 78 * deviceScale)
                         let options = PHImageRequestOptions()
                         options.isSynchronous = true
                         options.deliveryMode = .opportunistic
@@ -50,13 +50,8 @@ class YPAlbumsManager {
                         })
                     }
                     album.collection = assetCollection
-                    
-                    if YPConfig.library.mediaType == .photo {
-                        if !(assetCollection.assetCollectionSubtype == .smartAlbumSlomoVideos
-                            || assetCollection.assetCollectionSubtype == .smartAlbumVideos) {
-                            albums.append(album)
-                        }
-                    } else {
+                    if !(assetCollection.assetCollectionSubtype == .smartAlbumSlomoVideos
+                        || assetCollection.assetCollectionSubtype == .smartAlbumVideos) {
                         albums.append(album)
                     }
                 }

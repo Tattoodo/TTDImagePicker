@@ -196,7 +196,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
         present(navVC, animated: true, completion: nil)
     }
     
-    func setTitleViewWithTitle(aTitle: String) {
+    func setTitleViewWithTitle(aTitle: String, includeAlbumButton: Bool = true) {
         let titleView = UIStackView()
         titleView.alignment = .center
         titleView.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
@@ -217,7 +217,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
             label.textColor = navBarTitleColor
         }
         
-        if YPConfig.library.options != nil {
+        if YPConfig.library.options != nil || !includeAlbumButton {
             titleView.addArrangedSubview(label)
         } else {
             let arrow = UIImageView()
@@ -260,7 +260,9 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            target: self,
                                                            action: #selector(close))
         switch mode { //TODO: refactor this
-        case .videoLibraryMode, .photoLibraryMode:
+        case .videoLibraryMode:
+            setTitleViewWithTitle(aTitle: "Videos", includeAlbumButton: false)
+        case .photoLibraryMode:
             setTitleViewWithTitle(aTitle: currentLibraryVC?.title ?? "")
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
                                                                 style: .done,

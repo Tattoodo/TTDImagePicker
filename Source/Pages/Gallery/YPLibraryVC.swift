@@ -286,6 +286,7 @@ public class YPLibraryVC: UIViewController, YPPermissionCheckable {
             //TODO: - show empty state
         }
         scrollToTop()
+        v.collectionView.reloadData()
     }
     
     func buildPHFetchOptions() -> PHFetchOptions {

@@ -175,7 +175,7 @@ public struct YPConfigLibrary {
     public var minWidthForItem: CGFloat?
     
     /// Choose what media types are available in the library. Defaults to `.photo`
-    public var mediaType = YPlibraryMediaType.photo
+    public var mediaType = YPlibraryMediaType.video
 
     /// Initial state of multiple selection button.
     public var defaultMultipleSelection = false
