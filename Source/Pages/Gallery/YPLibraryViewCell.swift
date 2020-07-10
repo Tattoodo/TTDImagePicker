@@ -63,6 +63,25 @@ class YPLibraryViewCell: UICollectionViewCell {
     
     var representedAssetIdentifier: String!
     let imageView = UIImageView()
+
+    lazy var durationLabelContainer: UIStackView = {
+        let bgView = UIView()
+        bgView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        let view = UIStackView()
+        view.addArrangedSubview(durationLabel)
+        view.isLayoutMarginsRelativeArrangement = true
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 2, trailing: 3)
+        view.addSubview(bgView)
+        bgView.translatesAutoresizingMaskIntoConstraints = false
+        bgView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        bgView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        bgView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        bgView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        bgView.layer.cornerRadius = 4
+        view.sendSubviewToBack(bgView)
+        return view
+    }()
+
     let durationLabel = UILabel() //TODO: - add bg alpha color
     let selectionOverlay = UIView()
     let multipleSelectionIndicator = YPMultipleSelectionIndicator()
@@ -70,7 +89,7 @@ class YPLibraryViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [imageView, durationLabel, selectionOverlay, multipleSelectionIndicator].forEach {
+        [imageView, durationLabelContainer, selectionOverlay, multipleSelectionIndicator].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
@@ -85,8 +104,8 @@ class YPLibraryViewCell: UICollectionViewCell {
             selectionOverlay.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             selectionOverlay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            durationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            durationLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            durationLabelContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            durationLabelContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
 
             multipleSelectionIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 3),
             multipleSelectionIndicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3)
@@ -97,8 +116,7 @@ class YPLibraryViewCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         durationLabel.textColor = .white
-        durationLabel.font = .systemFont(ofSize: 12)
-        durationLabel.isHidden = true
+        durationLabel.font = .systemFont(ofSize: 10, weight: .bold)
         selectionOverlay.backgroundColor = .white
         selectionOverlay.alpha = 0
         backgroundColor = .ypSecondarySystemBackground
