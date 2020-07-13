@@ -1,37 +1,23 @@
 import UIKit
 
-enum CropAspect: CaseIterable {
-    case original
-    /// 1:1
-    case square
-    /// 2:3
-    case twoToThree
-    /// 16:9
-    case sixteenToNine
-    /// 3:4
-    case threeToFour
-    /// 10:8
-    case tenToEight
-    /// 7:5
-    case sevenToFive
-    /// 5:3
-    case fiveToThree
-}
-
 class CropAspectSelector: UIView {
-    var onSelectedOptionChange: (CropAspect) -> Void = { _ in }
+    private let ratioManager: FixedRatioManager
+    private var isHorizontal: Bool { ratioManager.type == .horizontal }
+    var onSelectedRatioChanged: (_ ratio: Double, _ name: String) -> Void = { _,_ in }
     var onClose: () -> Void = {}
 
-    private(set) var selectedOption: CropAspect = .square {
+    private(set) var selectedOption: RatioItemType {
         didSet {
             updateSelection()
-            onSelectedOptionChange(selectedOption)
+            let ratio = isHorizontal ? selectedOption.ratioH : selectedOption.ratioV
+            let name = isHorizontal ? selectedOption.nameH : selectedOption.nameV
+            onSelectedRatioChanged(ratio, name)
             onClose()
         }
     }
 
     private let buttonTagOffset = 1000
-    private let options: [CropAspect] = CropAspect.allCases
+    private var options: [RatioItemType] { ratioManager.ratios }
 
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -57,7 +43,9 @@ class CropAspectSelector: UIView {
         return view
     }()
 
-    init() {
+    init(ratioManager: FixedRatioManager) {
+        self.ratioManager = ratioManager
+        selectedOption = ratioManager.getOriginalRatioItem()
         super.init(frame: .zero)
         setupViews()
         setupData()
@@ -99,24 +87,23 @@ class CropAspectSelector: UIView {
     }
 
     private func updateSelection() {
-        guard let idx = options.firstIndex(of: selectedOption) else { return }
+        guard let idx = options.firstIndex(where: { $0.nameV == selectedOption.nameV }) else { return }
         optionButtons.forEach {
             let tag = idx + buttonTagOffset
             $0.isSelected = tag == $0.tag
         }
     }
 
-    private func buttonForAspect(option: CropAspect) -> UIButton {
+    private func buttonForAspect(option: RatioItemType) -> UIButton {
         let button = UIButton()
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        button.setTitle(option.stringRepresentation, for: .normal)
+        button.setTitle(isHorizontal ? option.nameH : option.nameV, for: .normal)
         button.setTitleColor(.ypLabel, for: .selected)
         button.setTitleColor(.ypSecondaryLabel, for: .normal)
         button.isSelected = option == selectedOption
         button.addTarget(self, action: #selector(optionButtonTapAction(sender:)), for: .touchUpInside)
         return button
     }
-
 
     @objc private func optionButtonTapAction(sender: UIButton) {
         let idx = sender.tag - buttonTagOffset
@@ -125,31 +112,5 @@ class CropAspectSelector: UIView {
 
     @objc private func closeButtonTapAction() {
         onClose()
-    }
-}
- extension CropAspect {
-    var stringRepresentation: String {
-        switch self {
-        case .original: return "Original"
-        case .square: return "Square"
-        case .twoToThree: return "2:3"
-        case .sixteenToNine: return "16:9"
-        case .threeToFour: return "3:4"
-        case .tenToEight: return "10:8"
-        case .sevenToFive: return "7:5"
-        case .fiveToThree: return "5:3"
-        }
-    }
-    var aspectRatio: CGFloat? {
-        switch self {
-        case .original: return nil
-        case .square: return 1
-        case .twoToThree: return 2/3
-        case .sixteenToNine: return  16/9
-        case .threeToFour: return 3/4
-        case .tenToEight: return 10/8
-        case .sevenToFive: return 7/5
-        case .fiveToThree: return 5/3
-        }
     }
 }

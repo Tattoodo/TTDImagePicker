@@ -1,18 +1,19 @@
 import UIKit
 
 class CropToolbarMenu: UIView {
-    var onAspectRatioChange: (CropAspect) -> () = { _ in }
-    var selectedApsectRatio: CropAspect { aspectSelector.selectedOption }
+    var onAspectRatioChange: (Double) -> () = { _ in }
     var onFlipAction: () -> Void = {}
+    var onResetActionTap: () -> Void = {}
+    private let ratioManager: FixedRatioManager
     private lazy var aspectSelector: CropAspectSelector = {
-        CropAspectSelector()
+        CropAspectSelector(ratioManager: ratioManager)
     }()
 
     private lazy var hStack: UIStackView = {
         let view = UIStackView()
         view.addArrangedSubview(aspectRatioStack)
         view.addArrangedSubview(flipIcon)
-        view.addArrangedSubview(rotateView)
+        view.addArrangedSubview(resetView)
         view.alignment = .center
         view.distribution = .equalCentering
         view.isLayoutMarginsRelativeArrangement = true
@@ -58,20 +59,24 @@ class CropToolbarMenu: UIView {
         return view
     }()
 
-    private lazy var rotateView: UIImageView = {
-        let view = UIImageView(image: imageFromBundle("rotateImage"))
+    private lazy var resetView: UIImageView = {
+        let view = UIImageView(image: nil)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 22).isActive = true
         view.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        view.isUserInteractionEnabled = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(reset))
+        view.addGestureRecognizer(tap)
         return view
     }()
 
-    init() {
+    init(ratioManager: FixedRatioManager) {
+        self.ratioManager = ratioManager
         super.init(frame: .zero)
         setupViews()
-        aspectSelector.onSelectedOptionChange = { [weak self] option in
-            self?.aspectRatioLabel.text = option.stringRepresentation
-            self?.onAspectRatioChange(option)
+        aspectSelector.onSelectedRatioChanged = { [weak self] ratio, name in
+            self?.aspectRatioLabel.text = name
+            self?.onAspectRatioChange(ratio)
         }
         aspectSelector.onClose = { [weak self] in
             self?.setAspectSelector(isShowing: false)
@@ -80,6 +85,16 @@ class CropToolbarMenu: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setAsResettable() {
+        resetView.image = imageFromBundle("rotateImage")
+        resetView.isUserInteractionEnabled = true
+    }
+
+    func setAsUnResettable() {
+        resetView.image = nil
+        resetView.isUserInteractionEnabled = false
     }
 
     private func setAspectSelector(isShowing: Bool) {
@@ -105,9 +120,11 @@ class CropToolbarMenu: UIView {
             aspectSelector.trailingAnchor.constraint(equalTo: trailingAnchor),
             aspectSelector.centerYAnchor.constraint(equalTo: hStack.centerYAnchor)
         ])
-        aspectRatioLabel.text = aspectSelector.selectedOption.stringRepresentation
+        aspectRatioLabel.text = "Original"
         aspectSelector.alpha = 0
     }
+
+
 
     @objc private func openSelector() {
         setAspectSelector(isShowing: true)
@@ -115,5 +132,8 @@ class CropToolbarMenu: UIView {
 
     @objc private func flipImage() {
         onFlipAction()
+    }
+    @objc private func reset() {
+        onResetActionTap()
     }
 }

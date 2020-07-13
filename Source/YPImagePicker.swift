@@ -15,12 +15,9 @@ public protocol YPImagePickerDelegate: AnyObject {
 }
 
 open class YPImagePicker: UINavigationController {
-      
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
     private var _didFinishPicking: (([YPMediaItem], Bool) -> Void)?
+
     public func didFinishPicking(completion: @escaping (_ items: [YPMediaItem], _ cancelled: Bool) -> Void) {
         _didFinishPicking = completion
     }
@@ -108,12 +105,18 @@ override open func viewDidLoad() {
                 
                 func showCropVC(photo: YPMediaPhoto, completion: @escaping (_ aphoto: YPMediaPhoto) -> Void) {
                     if YPConfig.showsCrop {
-                        let cropVC = YPCropVC(image: photo.image)
-                        cropVC.didFinishCropping = { croppedImage in
-                            photo.modifiedImage = croppedImage
-                            completion(photo)
+                        let vc = cropViewController(image: photo.image)
+                        vc.didFinishCropping = { result in
+                            switch result {
+                            case .success(let croppedImage):
+                                photo.modifiedImage = croppedImage
+                                completion(photo)
+                            case .failure(let error):
+                                print(error)
+                                self?.popViewController(animated: true)
+                            }
                         }
-                        self?.pushViewController(cropVC, animated: true)
+                        self?.pushViewController(vc, animated: true)
                     } else {
                         completion(photo)
                     }
