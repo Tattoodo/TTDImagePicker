@@ -28,7 +28,7 @@ enum DialConfig {
         public var numberColor: UIColor = .lightGray
         public var centerAxisColor: UIColor = .lightGray
         
-        public var theme: Theme = .dark {
+        public var theme: Theme = .light {
             didSet {
                 switch theme {
                 case .dark:

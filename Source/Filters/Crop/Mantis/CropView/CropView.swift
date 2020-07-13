@@ -237,6 +237,7 @@ class CropView: UIView {
         }
         
         var config = DialConfig.Config()
+        config.theme = .light
         config.backgroundColor = .clear
         config.angleShowLimitType = .limit(angle: CGAngle(degrees: 40))
         config.rotationLimitType = .limit(angle: CGAngle(degrees: 45))

@@ -49,7 +49,8 @@ public class CropViewController: UIViewController {
         }
 
         cropToolbar.onFlipAction = { [weak self] in
-            self?.handleRotate(rotateAngle: .pi)
+            guard let self = self else { return }
+            self.cropView.image = self.cropView.image.withHorizontallyFlippedOrientation()
         }
     }
         
@@ -66,7 +67,7 @@ public class CropViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         createCropView()
         initLayout()
 
@@ -169,7 +170,7 @@ extension CropViewController {
         stackView = UIStackView()
         stackView?.axis = .vertical
         view.addSubview(stackView!)
-        cropToolbar.backgroundColor = .red
+        cropToolbar.backgroundColor = .white
         stackView?.translatesAutoresizingMaskIntoConstraints = false
         cropToolbar.translatesAutoresizingMaskIntoConstraints = false
         cropView.translatesAutoresizingMaskIntoConstraints = false

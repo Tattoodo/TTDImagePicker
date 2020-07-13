@@ -14,7 +14,7 @@ class CropVisualEffectView: UIVisualEffectView, CropMaskProtocol {
     fileprivate var translucencyEffect: UIVisualEffect?
     
     convenience init(cropShapeType: CropShapeType = .rect) {
-        let translucencyEffect = UIBlurEffect(style: .dark)
+        let translucencyEffect = UIBlurEffect(style: .light)
         self.init(effect: translucencyEffect)
         self.cropShapeType = cropShapeType
         self.translucencyEffect = translucencyEffect
@@ -22,7 +22,7 @@ class CropVisualEffectView: UIVisualEffectView, CropMaskProtocol {
     }
         
     func setMask() {
-        let layer = createOverLayer(opacity: 0.98)
+        let layer = createOverLayer(opacity: 0.8)
         
         let maskView = UIView(frame: self.bounds)
         maskView.clipsToBounds = true
