@@ -2,7 +2,7 @@ import UIKit
 
 class CropToolbarMenu: UIView {
     var onAspectRatioChange: (CropAspect) -> () = { _ in }
-
+    var selectedApsectRatio: CropAspect { aspectSelector.selectedOption }
     private lazy var aspectSelector: CropAspectSelector = {
         CropAspectSelector()
     }()
@@ -15,7 +15,7 @@ class CropToolbarMenu: UIView {
         view.alignment = .center
         view.distribution = .equalCentering
         view.isLayoutMarginsRelativeArrangement = true
-        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 24)
         return view
     }()
 
@@ -99,8 +99,7 @@ class CropToolbarMenu: UIView {
         NSLayoutConstraint.activate([
             aspectSelector.leadingAnchor.constraint(equalTo: leadingAnchor),
             aspectSelector.trailingAnchor.constraint(equalTo: trailingAnchor),
-            aspectSelector.topAnchor.constraint(equalTo: topAnchor),
-            aspectSelector.bottomAnchor.constraint(equalTo: bottomAnchor)
+            aspectSelector.topAnchor.constraint(equalTo: topAnchor, constant: 16)
         ])
         aspectRatioLabel.text = aspectSelector.selectedOption.stringRepresentation
         aspectSelector.alpha = 0

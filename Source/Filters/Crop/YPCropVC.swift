@@ -26,8 +26,8 @@ class YPCropVC: UIViewController {
     private let v: YPCropView
     override func loadView() { view = v }
     
-    required init(image: UIImage, ratio: Double) {
-        v = YPCropView(image: image, ratio: ratio)
+    required init(image: UIImage) {
+        v = YPCropView(image: image)
         originalImage = image
         super.init(nibName: nil, bundle: nil)
         self.title = YPConfig.wordings.crop

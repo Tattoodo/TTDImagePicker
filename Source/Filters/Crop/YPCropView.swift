@@ -20,13 +20,16 @@ class YPCropView: UIView {
     let topCurtain = UIView()
     let cropArea = UIView()
     let bottomCurtain = UIView()
+    let leftCurtain = UIView()
+    let rightCurtain = UIView()
+    let bordersView = UIView()
     let toolbar = CropToolbarMenu()
 
-    convenience init(image: UIImage, ratio: Double) {
+    convenience init(image: UIImage) {
         self.init(frame: .zero)
         setupViewHierarchy()
         originalImageAspectRatio = image.aspectRatio
-        setupLayout(with: image, ratio: ratio)
+        setupLayout(with: image, ratio: toolbar.selectedApsectRatio.aspectRatio ?? originalImageAspectRatio)
         applyStyle()
         imageView.image = image
         originalImage = image
@@ -36,39 +39,54 @@ class YPCropView: UIView {
     }
     
     private func setupViewHierarchy() {
-        [imageView, topCurtain, cropArea, bottomCurtain, toolbar].forEach {
+        [imageView, leftCurtain, topCurtain, cropArea, rightCurtain, bottomCurtain, toolbar, bordersView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
         }
     }
     
-    private func setupLayout(with image: UIImage, ratio: Double) {
-
+    private func setupLayout(with image: UIImage, ratio: CGFloat) {
+        let margin: CGFloat = 18
         let r: CGFloat = CGFloat(1.0 / ratio)
         NSLayoutConstraint.activate([
             topCurtain.topAnchor.constraint(equalTo: topAnchor),
-            topCurtain.leadingAnchor.constraint(equalTo: leadingAnchor),
-            topCurtain.trailingAnchor.constraint(equalTo: trailingAnchor),
+            topCurtain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: margin),
+            topCurtain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -margin),
+
+            leftCurtain.leadingAnchor.constraint(equalTo: leadingAnchor),
+            leftCurtain.topAnchor.constraint(equalTo: topAnchor),
+            leftCurtain.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
+            leftCurtain.widthAnchor.constraint(equalToConstant: margin),
 
             cropArea.topAnchor.constraint(equalTo: topCurtain.bottomAnchor),
-            cropArea.leadingAnchor.constraint(equalTo: leadingAnchor),
-            cropArea.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cropArea.leadingAnchor.constraint(equalTo: leadingAnchor, constant: margin),
+            cropArea.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -margin),
 
             bottomCurtain.topAnchor.constraint(equalTo: cropArea.bottomAnchor),
-            bottomCurtain.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomCurtain.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomCurtain.bottomAnchor.constraint(equalTo: bottomAnchor),
+            bottomCurtain.leadingAnchor.constraint(equalTo: leadingAnchor, constant: margin),
+            bottomCurtain.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -margin),
+            bottomCurtain.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
+
+            rightCurtain.trailingAnchor.constraint(equalTo: trailingAnchor),
+            rightCurtain.topAnchor.constraint(equalTo: topAnchor),
+            rightCurtain.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
+            rightCurtain.widthAnchor.constraint(equalToConstant: margin),
 
             toolbar.leadingAnchor.constraint(equalTo: leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: trailingAnchor),
-            toolbar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            toolbar.bottomAnchor.constraint(equalTo: bottomAnchor),
 
             cropArea.heightAnchor.constraint(equalTo: cropArea.widthAnchor, multiplier: r),
-            cropArea.centerYAnchor.constraint(equalTo: centerYAnchor)
+            cropArea.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -24),
+
+            bordersView.leadingAnchor.constraint(equalTo: leftCurtain.trailingAnchor),
+            bordersView.topAnchor.constraint(equalTo: topCurtain.bottomAnchor),
+            bordersView.bottomAnchor.constraint(equalTo: bottomCurtain.topAnchor),
+            bordersView.trailingAnchor.constraint(equalTo: rightCurtain.leadingAnchor)
         ])
 
         // Fit image differently depnding on its ratio.
-        let imageRatio: Double = Double(image.size.width / image.size.height)
+        let imageRatio: CGFloat = image.size.width / image.size.height
         if ratio > imageRatio {
             let scaledDownRatio = UIScreen.main.bounds.width / image.size.width
             NSLayoutConstraint.activate([
@@ -94,30 +112,34 @@ class YPCropView: UIView {
     }
 
     private func apply(aspectRatio: CropAspect) {
-        [imageView, topCurtain, cropArea, bottomCurtain, toolbar].forEach { $0.removeFromSuperview() }
-        [imageView, topCurtain, cropArea, bottomCurtain].forEach { NSLayoutConstraint.deactivate($0.constraints) }
+        [imageView, topCurtain, cropArea, bottomCurtain, rightCurtain, leftCurtain, bordersView, toolbar].forEach { $0.removeFromSuperview() }
+        [imageView, topCurtain, cropArea, bottomCurtain, rightCurtain, leftCurtain, bordersView].forEach { NSLayoutConstraint.deactivate($0.constraints) }
         setupViewHierarchy()
-        setupLayout(with: originalImage, ratio: Double(aspectRatio.aspectRatio ?? originalImageAspectRatio))
+        setupLayout(with: originalImage, ratio: aspectRatio.aspectRatio ?? originalImageAspectRatio)
     }
 
     private func applyStyle() {
         backgroundColor = .ypSystemBackground
         clipsToBounds = true
-
         imageView.isUserInteractionEnabled = true
         imageView.isMultipleTouchEnabled = true
-
-        curtainStyle(v: topCurtain)
         cropArea.backgroundColor = .clear
         cropArea.isUserInteractionEnabled = false
+        curtainStyle(v: topCurtain)
         curtainStyle(v: bottomCurtain)
+        curtainStyle(v: leftCurtain)
+        curtainStyle(v: rightCurtain)
 
+        bordersView.backgroundColor = .clear
+        bordersView.layer.borderWidth = 1
+        bordersView.layer.borderColor = UIColor.white.cgColor
+        bordersView.isUserInteractionEnabled = false
+
+        toolbar.backgroundColor = .ypSystemBackground
     }
     
     func curtainStyle(v: UIView) {
         v.backgroundColor = UIColor.ypSystemBackground.withAlphaComponent(0.7)
         v.isUserInteractionEnabled = false
-        v.layer.borderColor = UIColor.white.cgColor
-        v.layer.borderWidth = 1
     }
 }
