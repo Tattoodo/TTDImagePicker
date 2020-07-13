@@ -8,11 +8,6 @@
 
 import UIKit
 
-public enum YPCropType {
-    case none
-    case rectangle(ratio: Double)
-}
-
 class YPCropVC: UIViewController {
     
     public var didFinishCropping: ((UIImage) -> Void)?
@@ -80,7 +75,6 @@ class YPCropVC: UIViewController {
         guard let image = v.imageView.image else {
             return
         }
-        
         let xCrop = v.cropArea.frame.minX - v.imageView.frame.minX
         let yCrop = v.cropArea.frame.minY - v.imageView.frame.minY
         let widthCrop = v.cropArea.frame.width
@@ -92,7 +86,7 @@ class YPCropVC: UIViewController {
                                     height: heightCrop * scaleRatio)
         if let cgImage = image.toCIImage()?.toCGImage(),
             let imageRef = cgImage.cropping(to: scaledCropRect) {
-            let croppedImage = UIImage(cgImage: imageRef)
+            let croppedImage = v.isFlipped ? UIImage(cgImage: imageRef).withHorizontallyFlippedOrientation() : UIImage(cgImage: imageRef)
             didFinishCropping?(croppedImage)
         }
     }

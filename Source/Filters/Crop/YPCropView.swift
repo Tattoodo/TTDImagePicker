@@ -16,6 +16,7 @@ extension UIImage {
 class YPCropView: UIView {
     private var originalImageAspectRatio: CGFloat!
     private var originalImage: UIImage!
+    var isFlipped: Bool = false
     let imageView = UIImageView()
     let topCurtain = UIView()
     let cropArea = UIView()
@@ -35,6 +36,11 @@ class YPCropView: UIView {
         originalImage = image
         toolbar.onAspectRatioChange = { [weak self] aspect in
             self?.apply(aspectRatio: aspect)
+        }
+        toolbar.onFlipAction = { [weak self] in
+            guard let flipped = self?.imageView.image?.withHorizontallyFlippedOrientation() else { return }
+            self?.imageView.image = flipped
+            self?.isFlipped.toggle()
         }
     }
     

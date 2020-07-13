@@ -3,7 +3,7 @@ import UIKit
 class CropToolbarMenu: UIView {
     var onAspectRatioChange: (CropAspect) -> () = { _ in }
     var selectedApsectRatio: CropAspect { aspectSelector.selectedOption }
-
+    var onFlipAction: () -> Void = {}
     private lazy var aspectSelector: CropAspectSelector = {
         CropAspectSelector()
     }()
@@ -52,6 +52,9 @@ class CropToolbarMenu: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 22).isActive = true
         view.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(flipImage))
+        view.addGestureRecognizer(tap)
         return view
     }()
 
@@ -108,5 +111,9 @@ class CropToolbarMenu: UIView {
 
     @objc private func openSelector() {
         setAspectSelector(isShowing: true)
+    }
+
+    @objc private func flipImage() {
+        onFlipAction()
     }
 }
