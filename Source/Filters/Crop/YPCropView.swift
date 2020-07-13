@@ -15,7 +15,7 @@ extension UIImage {
 }
 class YPCropView: UIView {
     private var originalImageAspectRatio: CGFloat!
-    private var image: UIImage!
+    private var originalImage: UIImage!
     let imageView = UIImageView()
     let topCurtain = UIView()
     let cropArea = UIView()
@@ -29,6 +29,7 @@ class YPCropView: UIView {
         setupLayout(with: image, ratio: ratio)
         applyStyle()
         imageView.image = image
+        originalImage = image
         toolbar.onAspectRatioChange = { [weak self] aspect in
             self?.apply(aspectRatio: aspect)
         }
@@ -42,6 +43,7 @@ class YPCropView: UIView {
     }
     
     private func setupLayout(with image: UIImage, ratio: Double) {
+
         let r: CGFloat = CGFloat(1.0 / ratio)
         NSLayoutConstraint.activate([
             topCurtain.topAnchor.constraint(equalTo: topAnchor),
@@ -92,7 +94,10 @@ class YPCropView: UIView {
     }
 
     private func apply(aspectRatio: CropAspect) {
-        setupLayout(with: imageView.image!, ratio: Double(aspectRatio.aspectRatio ?? originalImageAspectRatio))
+        [imageView, topCurtain, cropArea, bottomCurtain, toolbar].forEach { $0.removeFromSuperview() }
+        [imageView, topCurtain, cropArea, bottomCurtain].forEach { NSLayoutConstraint.deactivate($0.constraints) }
+        setupViewHierarchy()
+        setupLayout(with: originalImage, ratio: Double(aspectRatio.aspectRatio ?? originalImageAspectRatio))
     }
 
     private func applyStyle() {
@@ -112,5 +117,7 @@ class YPCropView: UIView {
     func curtainStyle(v: UIView) {
         v.backgroundColor = UIColor.ypSystemBackground.withAlphaComponent(0.7)
         v.isUserInteractionEnabled = false
+        v.layer.borderColor = UIColor.white.cgColor
+        v.layer.borderWidth = 1
     }
 }
