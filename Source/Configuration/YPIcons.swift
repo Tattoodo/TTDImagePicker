@@ -16,9 +16,9 @@ public struct YPIcons {
     public var backButtonIcon: UIImage = imageFromBundle("yp_arrow_left")
     public var arrowDownIcon: UIImage = imageFromBundle("yp_arrow_down")
     public var cropIcon: UIImage = imageFromBundle("yp_iconCrop")
-    public var flashOnIcon: UIImage = imageFromBundle("flashOff") //TODO: - on / auto
+    public var flashOnIcon: UIImage = imageFromBundle("flashOn")
     public var flashOffIcon: UIImage = imageFromBundle("flashOff")
-    public var flashAutoIcon: UIImage = imageFromBundle("flashOff")
+    public var flashAutoIcon: UIImage = imageFromBundle("flashAuto")
     public var loopIcon: UIImage = imageFromBundle("cameraFlip")
     public var multipleSelectionOffIcon: UIImage = imageFromBundle("yp_multiple")
     public var multipleSelectionOnIcon: UIImage = imageFromBundle("yp_multiple_colored")

@@ -86,7 +86,8 @@ class YPCameraView: UIView, UIGestureRecognizerDelegate {
         }
 
         NSLayoutConstraint.activate([
-            flashButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15 + sideMargin),
+            flashButton.centerXAnchor.constraint(equalTo: leadingAnchor, constant: 30 + sideMargin),
+            flashButton.centerYAnchor.constraint(equalTo: shotButton.centerYAnchor),
             flashButton.bottomAnchor.constraint(equalTo: previewViewContainer.bottomAnchor, constant: -50),//OR +
 
             flipButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(15 + sideMargin)),
