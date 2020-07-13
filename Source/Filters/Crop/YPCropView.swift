@@ -8,20 +8,30 @@
 
 import UIKit
 
+extension UIImage {
+    var aspectRatio: CGFloat {
+        size.width &/ size.height
+    }
+}
 class YPCropView: UIView {
-    
+    private var originalImageAspectRatio: CGFloat!
+    private var image: UIImage!
     let imageView = UIImageView()
     let topCurtain = UIView()
     let cropArea = UIView()
     let bottomCurtain = UIView()
-    let toolbar = UIToolbar()
+    let toolbar = CropToolbarMenu()
 
     convenience init(image: UIImage, ratio: Double) {
         self.init(frame: .zero)
         setupViewHierarchy()
+        originalImageAspectRatio = image.aspectRatio
         setupLayout(with: image, ratio: ratio)
         applyStyle()
         imageView.image = image
+        toolbar.onAspectRatioChange = { [weak self] aspect in
+            self?.apply(aspectRatio: aspect)
+        }
     }
     
     private func setupViewHierarchy() {
@@ -52,10 +62,9 @@ class YPCropView: UIView {
             toolbar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
 
             cropArea.heightAnchor.constraint(equalTo: cropArea.widthAnchor, multiplier: r),
-            cropArea.centerYAnchor.constraint(equalTo: centerYAnchor),
-
-
+            cropArea.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+
         // Fit image differently depnding on its ratio.
         let imageRatio: Double = Double(image.size.width / image.size.height)
         if ratio > imageRatio {
@@ -80,10 +89,12 @@ class YPCropView: UIView {
             ])
         }
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: CGFloat(imageRatio)).isActive = true
-        //        // Fit imageView to image's bounds
-        //        imageView.Width == imageView.Height * CGFloat(imageRatio)
     }
-    
+
+    private func apply(aspectRatio: CropAspect) {
+        setupLayout(with: imageView.image!, ratio: Double(aspectRatio.aspectRatio ?? originalImageAspectRatio))
+    }
+
     private func applyStyle() {
         backgroundColor = .ypSystemBackground
         clipsToBounds = true
@@ -96,8 +107,6 @@ class YPCropView: UIView {
         cropArea.isUserInteractionEnabled = false
         curtainStyle(v: bottomCurtain)
 
-        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
     }
     
     func curtainStyle(v: UIView) {

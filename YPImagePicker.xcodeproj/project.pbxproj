@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6339142C24BC5C4C006856AF /* CropAspectSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339142B24BC5C4B006856AF /* CropAspectSelector.swift */; };
+		6339142E24BC69D7006856AF /* CropToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339142D24BC69D7006856AF /* CropToolbarMenu.swift */; };
 		8458057421819B95004F241C /* YPImagePickerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99C6D6991F1FB5C100711DB2 /* YPImagePickerLocalizable.strings */; };
 		99019E4C2018CCD6007325C2 /* YPBottomPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E4B2018CCD6007325C2 /* YPBottomPagerView.swift */; };
 		99019E4E2018CD31007325C2 /* YPPagerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E4D2018CD31007325C2 /* YPPagerMenu.swift */; };
@@ -102,6 +104,8 @@
 		4EA67521208A45080076D4E3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/YPImagePickerLocalizable.strings; sourceTree = "<group>"; };
 		52412A931CA6114A0073C4BE /* YPImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YPImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F01F9DC20DCC494007432E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/YPImagePickerLocalizable.strings"; sourceTree = "<group>"; };
+		6339142B24BC5C4B006856AF /* CropAspectSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropAspectSelector.swift; sourceTree = "<group>"; };
+		6339142D24BC69D7006856AF /* CropToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropToolbarMenu.swift; sourceTree = "<group>"; };
 		65BBCBAE2101BA4200277809 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/YPImagePickerLocalizable.strings; sourceTree = "<group>"; };
 		7157B4CA206FD7270004EF6C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/YPImagePickerLocalizable.strings"; sourceTree = "<group>"; };
 		99019E4B2018CCD6007325C2 /* YPBottomPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPBottomPagerView.swift; sourceTree = "<group>"; };
@@ -236,6 +240,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6339142A24BC5C34006856AF /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				6339142B24BC5C4B006856AF /* CropAspectSelector.swift */,
+				6339142D24BC69D7006856AF /* CropToolbarMenu.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
 		99019E4A2018CCB8007325C2 /* BottomPager */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +304,7 @@
 		99A3C90E20319212008D7E23 /* Crop */ = {
 			isa = PBXGroup;
 			children = (
+				6339142A24BC5C34006856AF /* Menu */,
 				99A3C91120319231008D7E23 /* YPCropVC.swift */,
 				99A3C90F20319227008D7E23 /* YPCropView.swift */,
 			);
@@ -599,6 +613,7 @@
 				99C6D6C51F1FB5C100711DB2 /* YPFilterCollectionViewCell.swift in Sources */,
 				990FD295201B3E59002A39A1 /* YPDragDirection.swift in Sources */,
 				99278DAE205140F60059532E /* YPPermissionDeniedPopup.swift in Sources */,
+				6339142E24BC69D7006856AF /* CropToolbarMenu.swift in Sources */,
 				99CF6D21201B70A000487F77 /* YPLibraryVC+CollectionView.swift in Sources */,
 				99CF6D1B201B6A5C00487F77 /* UICollectionView+Extensions.swift in Sources */,
 				99C6D6C11F1FB5C100711DB2 /* YPAssetViewContainer.swift in Sources */,
@@ -651,6 +666,7 @@
 				99CF6D27201B739600487F77 /* YPAlerts.swift in Sources */,
 				99C6D6CF1F1FB5C100711DB2 /* YPPickerVC.swift in Sources */,
 				EB94F28E208E3A140049F523 /* YPLoaders.swift in Sources */,
+				6339142C24BC5C4C006856AF /* CropAspectSelector.swift in Sources */,
 				99CF6D29201B900400487F77 /* LibraryMediaManager.swift in Sources */,
 				99CD962720D179FD009F5084 /* YPSelectionsGalleryView.swift in Sources */,
 				99C6D6BE1F1FB5C100711DB2 /* YPLibraryViewCell.swift in Sources */,
