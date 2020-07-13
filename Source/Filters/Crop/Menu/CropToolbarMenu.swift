@@ -3,6 +3,7 @@ import UIKit
 class CropToolbarMenu: UIView {
     var onAspectRatioChange: (CropAspect) -> () = { _ in }
     var selectedApsectRatio: CropAspect { aspectSelector.selectedOption }
+
     private lazy var aspectSelector: CropAspectSelector = {
         CropAspectSelector()
     }()
@@ -15,7 +16,7 @@ class CropToolbarMenu: UIView {
         view.alignment = .center
         view.distribution = .equalCentering
         view.isLayoutMarginsRelativeArrangement = true
-        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 24)
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         return view
     }()
 
@@ -90,8 +91,8 @@ class CropToolbarMenu: UIView {
         addSubview(hStack)
         NSLayoutConstraint.activate([
             hStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            hStack.topAnchor.constraint(equalTo: topAnchor),
-            hStack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            hStack.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            hStack.heightAnchor.constraint(equalToConstant: 40),
             hStack.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         aspectSelector.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +100,7 @@ class CropToolbarMenu: UIView {
         NSLayoutConstraint.activate([
             aspectSelector.leadingAnchor.constraint(equalTo: leadingAnchor),
             aspectSelector.trailingAnchor.constraint(equalTo: trailingAnchor),
-            aspectSelector.topAnchor.constraint(equalTo: topAnchor, constant: 16)
+            aspectSelector.centerYAnchor.constraint(equalTo: hStack.centerYAnchor)
         ])
         aspectRatioLabel.text = aspectSelector.selectedOption.stringRepresentation
         aspectSelector.alpha = 0

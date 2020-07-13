@@ -75,6 +75,7 @@ class YPCropView: UIView {
             toolbar.leadingAnchor.constraint(equalTo: leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: trailingAnchor),
             toolbar.bottomAnchor.constraint(equalTo: bottomAnchor),
+            toolbar.heightAnchor.constraint(equalToConstant: safeAreaInsets.bottom + 60 + 24),
 
             cropArea.heightAnchor.constraint(equalTo: cropArea.widthAnchor, multiplier: r),
             cropArea.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -24),
@@ -116,6 +117,9 @@ class YPCropView: UIView {
         [imageView, topCurtain, cropArea, bottomCurtain, rightCurtain, leftCurtain, bordersView].forEach { NSLayoutConstraint.deactivate($0.constraints) }
         setupViewHierarchy()
         setupLayout(with: originalImage, ratio: aspectRatio.aspectRatio ?? originalImageAspectRatio)
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
     }
 
     private func applyStyle() {
@@ -125,6 +129,7 @@ class YPCropView: UIView {
         imageView.isMultipleTouchEnabled = true
         cropArea.backgroundColor = .clear
         cropArea.isUserInteractionEnabled = false
+
         curtainStyle(v: topCurtain)
         curtainStyle(v: bottomCurtain)
         curtainStyle(v: leftCurtain)
