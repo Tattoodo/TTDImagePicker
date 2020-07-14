@@ -283,8 +283,7 @@
 		52412A891CA6114A0073C4BE = {
 			isa = PBXGroup;
 			children = (
-				99C6D69D1F1FB5C100711DB2 /* Source */,
-				99C6D6971F1FB5C100711DB2 /* Resources */,
+				99C6D69D1F1FB5C100711DB2 /* Sources */,
 				52412A941CA6114A0073C4BE /* Products */,
 				EB3251DE20878D5900A6190D /* Frameworks */,
 			);
@@ -298,6 +297,25 @@
 				52412A931CA6114A0073C4BE /* TTDImagePicker.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6324858A24BDD0E100342B2D /* TTDImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				99C6D6B81F1FB5C100711DB2 /* TTDImagePicker.swift */,
+				99C6D6B51F1FB5C100711DB2 /* TTDPickerVC.swift */,
+				99019E4F2018CDDF007325C2 /* Configuration */,
+				EB65C4B3209281A10037858B /* Pages */,
+				99C6D6A91F1FB5C100711DB2 /* Filters */,
+				EBD2B639207B7B1100E711C2 /* SelectionsGallery */,
+				99019E542018CECC007325C2 /* Helpers */,
+				EBD2B63D207B7D4E00E711C2 /* Models */,
+				99C6D6B31F1FB5C100711DB2 /* Info.plist */,
+				99C6D6B21F1FB5C100711DB2 /* TTDImagePickerHeader.h */,
+				99C6D6981F1FB5C100711DB2 /* Assets.xcassets */,
+				99C6D6991F1FB5C100711DB2 /* TTDImagePickerLocalizable.strings */,
+			);
+			path = TTDImagePicker;
 			sourceTree = "<group>";
 		};
 		6339142A24BC5C34006856AF /* Menu */ = {
@@ -455,30 +473,12 @@
 			path = Crop;
 			sourceTree = "<group>";
 		};
-		99C6D6971F1FB5C100711DB2 /* Resources */ = {
+		99C6D69D1F1FB5C100711DB2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				99C6D6981F1FB5C100711DB2 /* Assets.xcassets */,
-				99C6D6991F1FB5C100711DB2 /* TTDImagePickerLocalizable.strings */,
+				6324858A24BDD0E100342B2D /* TTDImagePicker */,
 			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		99C6D69D1F1FB5C100711DB2 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				99C6D6B81F1FB5C100711DB2 /* TTDImagePicker.swift */,
-				99C6D6B51F1FB5C100711DB2 /* TTDPickerVC.swift */,
-				99019E4F2018CDDF007325C2 /* Configuration */,
-				EB65C4B3209281A10037858B /* Pages */,
-				99C6D6A91F1FB5C100711DB2 /* Filters */,
-				EBD2B639207B7B1100E711C2 /* SelectionsGallery */,
-				99019E542018CECC007325C2 /* Helpers */,
-				EBD2B63D207B7D4E00E711C2 /* Models */,
-				99C6D6B31F1FB5C100711DB2 /* Info.plist */,
-				99C6D6B21F1FB5C100711DB2 /* TTDImagePickerHeader.h */,
-			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		99C6D69E1F1FB5C100711DB2 /* Gallery */ = {
@@ -945,6 +945,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1001,6 +1002,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1031,7 +1033,7 @@
 					"$(PROJECT_DIR)/Resources",
 					"$(PROJECT_DIR)/Source",
 				);
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/TTDImagePicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1064,7 +1066,7 @@
 					"$(PROJECT_DIR)/Resources",
 					"$(PROJECT_DIR)/Source",
 				);
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/TTDImagePicker/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
