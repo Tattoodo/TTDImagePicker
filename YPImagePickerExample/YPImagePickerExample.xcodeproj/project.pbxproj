@@ -135,7 +135,6 @@
 				99428A021E7BE02400B765A9 /* Sources */,
 				99428A031E7BE02400B765A9 /* Frameworks */,
 				99428A041E7BE02400B765A9 /* Resources */,
-				99BEB97920A9BD1300FFEB55 /* Localizations Sanitizer */,
 				6324858724BDB10500342B2D /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -223,23 +222,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		99BEB97920A9BD1300FFEB55 /* Localizations Sanitizer */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Localizations Sanitizer";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/Localize.swift";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		99428A021E7BE02400B765A9 /* Sources */ = {
