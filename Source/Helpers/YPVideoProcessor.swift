@@ -1,10 +1,3 @@
-//
-//  YPVideoProcessor.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 13.09.2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
 
 import UIKit
 import AVFoundation

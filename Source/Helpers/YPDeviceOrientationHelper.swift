@@ -1,11 +1,3 @@
-//
-//  YPDeviceOrientationHelper.swift
-//  YPImagePicker
-//
-//  Created by Kf on 2019/7/22.
-//  Copyright © 2019 Yummypets. All rights reserved.
-//
-
 import UIKit
 import CoreMotion
 
