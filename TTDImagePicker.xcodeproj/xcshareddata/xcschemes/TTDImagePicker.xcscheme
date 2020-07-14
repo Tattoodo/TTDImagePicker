@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52412A921CA6114A0073C4BE"
-               BuildableName = "YPImagePicker.framework"
-               BlueprintName = "YPImagePicker"
-               ReferencedContainer = "container:YPImagePicker.xcodeproj">
+               BuildableName = "TTDImagePicker.framework"
+               BlueprintName = "TTDImagePicker"
+               ReferencedContainer = "container:TTDImagePicker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52412A921CA6114A0073C4BE"
-            BuildableName = "YPImagePicker.framework"
-            BlueprintName = "YPImagePicker"
-            ReferencedContainer = "container:YPImagePicker.xcodeproj">
+            BuildableName = "TTDImagePicker.framework"
+            BlueprintName = "TTDImagePicker"
+            ReferencedContainer = "container:TTDImagePicker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -56,15 +56,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52412A921CA6114A0073C4BE"
-            BuildableName = "YPImagePicker.framework"
-            BlueprintName = "YPImagePicker"
-            ReferencedContainer = "container:YPImagePicker.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
