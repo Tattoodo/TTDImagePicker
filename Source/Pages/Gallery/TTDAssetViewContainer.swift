@@ -59,8 +59,8 @@ class TTDAssetViewContainer: UIView {
         }
         
         spinner.startAnimating()
-        spinnerView.backgroundColor = UIColor.ypLabel.withAlphaComponent(0.3)
-        curtain.backgroundColor = UIColor.ypLabel.withAlphaComponent(0.7)
+        spinnerView.backgroundColor = UIColor.labelColor.withAlphaComponent(0.3)
+        curtain.backgroundColor = UIColor.labelColor.withAlphaComponent(0.7)
         curtain.alpha = 0
         
         if !onlySquare {

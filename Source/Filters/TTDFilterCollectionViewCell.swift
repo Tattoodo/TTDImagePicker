@@ -15,8 +15,8 @@ class TTDFilterCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             name.textColor = isSelected
-                ? UIColor.ypLabel
-                : UIColor.ypSecondaryLabel
+                ? UIColor.labelColor
+                : UIColor.secondaryLabelColor
             name.font = .systemFont(
                 ofSize: 11,
                 weight: isSelected ? .semibold : .regular
@@ -44,14 +44,14 @@ class TTDFilterCollectionViewCell: UICollectionViewCell {
         ])
 
         name.font = .systemFont(ofSize: 11, weight: UIFont.Weight.regular)
-        name.textColor = UIColor.ypSecondaryLabel
+        name.textColor = UIColor.secondaryLabelColor
         name.textAlignment = .center
 
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
 
         self.clipsToBounds = false
-        self.layer.shadowColor = UIColor.ypLabel.cgColor
+        self.layer.shadowColor = UIColor.labelColor.cgColor
         self.layer.shadowOpacity = 0.2
         self.layer.shadowOffset = CGSize(width: 4, height: 7)
         self.layer.shadowRadius = 5

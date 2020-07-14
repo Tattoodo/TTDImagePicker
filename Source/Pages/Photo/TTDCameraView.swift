@@ -96,7 +96,7 @@ class TTDCameraView: UIView, UIGestureRecognizerDelegate {
 
         // Style
         backgroundColor = TTDConfig.colors.photoVideoScreenBackgroundColor
-        previewViewContainer.backgroundColor = UIColor.ypLabel
+        previewViewContainer.backgroundColor = UIColor.labelColor
 
         timeElapsedLabel.textColor = .white
         timeElapsedLabel.text = "00:00"

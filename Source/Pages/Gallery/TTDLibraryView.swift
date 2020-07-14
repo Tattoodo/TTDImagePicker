@@ -36,7 +36,7 @@ final class TTDLibraryView: UIView {
 
     lazy var line: UIView = {
         let view = UIView()
-        view.backgroundColor = .ypSystemBackground
+        view.backgroundColor = .systemBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 1).isActive = true
         return view

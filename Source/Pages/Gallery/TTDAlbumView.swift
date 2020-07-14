@@ -20,6 +20,6 @@ class TTDAlbumView: UIView {
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        backgroundColor = .ypSystemBackground
+        backgroundColor = .systemBackgroundColor
     }
 }

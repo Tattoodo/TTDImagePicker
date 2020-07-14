@@ -45,10 +45,10 @@ final class TTDTextMenuItem: UIView {
     }
 
     func select() {
-        titleLabel.textColor = .ypLabel
+        titleLabel.textColor = .labelColor
     }
 
     func deselect() {
-        titleLabel.textColor = .ypSecondaryLabel
+        titleLabel.textColor = .secondaryLabelColor
     }
 }

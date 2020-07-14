@@ -98,8 +98,8 @@ class CropAspectSelector: UIView {
         let button = UIButton()
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         button.setTitle(isHorizontal ? option.nameH : option.nameV, for: .normal)
-        button.setTitleColor(.ypLabel, for: .selected)
-        button.setTitleColor(.ypSecondaryLabel, for: .normal)
+        button.setTitleColor(.labelColor, for: .selected)
+        button.setTitleColor(.secondaryLabelColor, for: .normal)
         button.isSelected = option == selectedOption
         button.addTarget(self, action: #selector(optionButtonTapAction(sender:)), for: .touchUpInside)
         return button

@@ -37,19 +37,18 @@ public struct TTDColors {
     public var bottomMenuItemBackgroundColor: UIColor = .clear
 
     /// A color for for bottom buttons selected text.
-    public var bottomMenuItemSelectedTextColor: UIColor = .ypLabel
+    public var bottomMenuItemSelectedTextColor: UIColor = .labelColor
 
     /// A color for for bottom buttons not selected text.
-    public var bottomMenuItemUnselectedTextColor: UIColor = .ypSecondaryLabel
+    public var bottomMenuItemUnselectedTextColor: UIColor = .secondaryLabelColor
 
     // MARK: - Trimmer
-    
     /// The color of the main border of the view
-    public var trimmerMainColor: UIColor = .ypLabel
+    public var trimmerMainColor: UIColor = .labelColor
     /// The color of the handles on the side of the view
-    public var trimmerHandleColor: UIColor = .ypSystemBackground
+    public var trimmerHandleColor: UIColor = .systemBackgroundColor
     /// The color of the position indicator
-    public var positionLineColor: UIColor = .ypSystemBackground
+    public var positionLineColor: UIColor = .systemBackgroundColor
     
     // MARK: - Cover selector
     
@@ -59,7 +58,7 @@ public struct TTDColors {
     // MARK: - Progress bar
     
     /// The color for the progress bar when processing video or images. The all track color.
-    public var progressBarTrackColor: UIColor = .ypSystemBackground
+    public var progressBarTrackColor: UIColor = .systemBackgroundColor
     /// The color of completed track for the progress bar
     public var progressBarCompletedColor: UIColor?
 }

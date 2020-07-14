@@ -48,10 +48,10 @@ public class TTDSelectionsGalleryCell: UICollectionViewCell {
 
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        editIcon.backgroundColor = UIColor.ypSystemBackground
+        editIcon.backgroundColor = UIColor.systemBackgroundColor
         editIcon.layer.cornerRadius = 16
         editSquare.layer.borderWidth = 1
-        editSquare.layer.borderColor = UIColor.ypLabel.cgColor
+        editSquare.layer.borderColor = UIColor.labelColor.cgColor
 
         removeButton.setImage(TTDConfig.icons.removeImage, for: .normal)
         removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)

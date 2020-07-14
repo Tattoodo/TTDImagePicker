@@ -74,13 +74,14 @@ public class CropViewController: UIViewController {
                                            action: #selector(cancel))
 
         let saveButton = UIBarButtonItem(title: TTDConfig.wordings.save,
-                                           style: .plain,
+                                           style: .done,
                                            target: self,
                                            action: #selector(done))
 
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.title = ypLocalized("TTDImagePickerCrop")
+        navigationItem.rightBarButtonItem?.tintColor = TTDConfig.colors.tintColor
+        navigationItem.title = localized("TTDImagePickerCrop")
 
     }
     

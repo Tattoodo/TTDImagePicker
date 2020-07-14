@@ -19,14 +19,14 @@ extension UIColor {
     /// The color for text labels that contain primary content.
     ///
     /// Like `.label`, but backwards-compatible with iOS 12 and lower.
-    static var ypLabel: UIColor {
+    static var labelColor: UIColor {
         if #available(iOS 13, *) {
             return .label
         }
         return .black
     }
     
-    static var ypSecondaryLabel: UIColor {
+    static var secondaryLabelColor: UIColor {
         if #available(iOS 13, *) {
             return .secondaryLabel
         }
@@ -46,7 +46,7 @@ extension UIColor {
     /// The color for the main background of your interface.
     ///
     /// Like `.systemBackground`, but backwards-compatible with iOS 12 and lower.
-    static var ypSystemBackground: UIColor {
+    static var systemBackgroundColor: UIColor {
         if #available(iOS 13, *) {
             return .systemBackground
         }

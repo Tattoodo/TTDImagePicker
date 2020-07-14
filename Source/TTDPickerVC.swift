@@ -175,7 +175,7 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
     func navBarTapped() {
         let vc = TTDAlbumVC(albumsManager: albumsManager)
         let navVC = UINavigationController(rootViewController: vc)
-        navVC.navigationBar.tintColor = .ypLabel
+        navVC.navigationBar.tintColor = .labelColor
         
         vc.didSelectAlbum = { [weak self] album in
             self?.currentLibraryVC?.setAlbum(album)
@@ -212,7 +212,7 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
             let arrow = UIImageView()
             arrow.image = TTDConfig.icons.arrowDownIcon
             arrow.image = arrow.image?.withRenderingMode(.alwaysTemplate)
-            arrow.tintColor = .ypLabel
+            arrow.tintColor = .labelColor
             
             let attributes = UINavigationBar.appearance().titleTextAttributes
             if let attributes = attributes, let foregroundColor = attributes[.foregroundColor] as? UIColor {

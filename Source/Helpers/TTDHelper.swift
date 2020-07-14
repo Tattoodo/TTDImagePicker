@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import Photos
 
-internal func ypLocalized(_ str: String) -> String {
+internal func localized(_ str: String) -> String {
     return NSLocalizedString(str,
                              tableName: "TTDImagePickerLocalizable",
                              bundle: Bundle(for: TTDPickerVC.self),
@@ -35,7 +35,7 @@ struct TTDHelper {
     static func configureFocusView(_ v: UIView) {
         v.alpha = 0.0
         v.backgroundColor = UIColor.clear
-        v.layer.borderColor = UIColor.ypSecondaryLabel.cgColor
+        v.layer.borderColor = UIColor.secondaryLabelColor.cgColor
         v.layer.borderWidth = 1.0
         v.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
     }

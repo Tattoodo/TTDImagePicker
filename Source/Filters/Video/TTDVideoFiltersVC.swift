@@ -38,8 +38,8 @@ public class TTDVideoFiltersVC: UIViewController, IsMediaFilterVC {
         super.viewDidLoad()
 
         view.backgroundColor = TTDConfig.colors.filterBackgroundColor
-        trimBottomItem.titleLabel.text = ypLocalized("TTDImagePickerTrim")
-        coverBottomItem.titleLabel.text = ypLocalized("TTDImagePickerCover")
+        trimBottomItem.titleLabel.text = localized("TTDImagePickerTrim")
+        coverBottomItem.titleLabel.text = localized("TTDImagePickerCover")
         trimBottomItem.button.addTarget(self, action: #selector(selectTrim), for: .touchUpInside)
         coverBottomItem.button.addTarget(self, action: #selector(selectCover), for: .touchUpInside)
         

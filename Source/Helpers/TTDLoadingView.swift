@@ -22,8 +22,8 @@ class TTDLoadingView: UIView {
         processingLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         
         // Style
-        backgroundColor = UIColor.ypLabel.withAlphaComponent(0.8)
-        processingLabel.textColor = .ypSystemBackground
+        backgroundColor = UIColor.labelColor.withAlphaComponent(0.8)
+        processingLabel.textColor = .systemBackgroundColor
         spinner.hidesWhenStopped = true
         
         // Content

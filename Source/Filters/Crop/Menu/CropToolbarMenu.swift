@@ -35,7 +35,7 @@ class CropToolbarMenu: UIView {
 
     private lazy var aspectRatioLabel: UILabel = {
         let view = UILabel()
-        view.textColor = .ypLabel
+        view.textColor = .labelColor
         view.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return view
     }()
