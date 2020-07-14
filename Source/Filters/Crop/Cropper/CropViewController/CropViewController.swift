@@ -68,19 +68,19 @@ public class CropViewController: UIViewController {
         createCropView()
         initLayout()
 
-        let cancelButton = UIBarButtonItem(title: YPConfig.wordings.cancel,
+        let cancelButton = UIBarButtonItem(title: TTDConfig.wordings.cancel,
                                            style: .plain,
                                            target: self,
                                            action: #selector(cancel))
 
-        let saveButton = UIBarButtonItem(title: YPConfig.wordings.save,
+        let saveButton = UIBarButtonItem(title: TTDConfig.wordings.save,
                                            style: .plain,
                                            target: self,
                                            action: #selector(done))
 
         navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.title = ypLocalized("YPImagePickerCrop")
+        navigationItem.title = ypLocalized("TTDImagePickerCrop")
 
     }
     

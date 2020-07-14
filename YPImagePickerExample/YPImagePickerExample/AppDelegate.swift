@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  YPImagePickerExample
+//  TTDImagePickerExample
 //
 //  Created by Sacha DSO on 17/03/2017.
 //  Copyright © 2017 Octopepper. All rights reserved.

@@ -1,11 +1,3 @@
-//
-//  CIImage+Extensions.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 21.07.2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 
 internal extension CIImage {

@@ -1,19 +1,19 @@
 //
 //  ExampleViewController.swift
-//  YPImagePickerExample
+//  TTDImagePickerExample
 //
 //  Created by Sacha DSO on 17/03/2017.
 //  Copyright © 2017 Octopepper. All rights reserved.
 //
 
 import UIKit
-import YPImagePicker
+import TTDImagePicker
 import AVFoundation
 import AVKit
 import Photos
 
 class ExampleViewController: UIViewController {
-    var selectedItems = [YPMediaItem]()
+    var selectedItems = [TTDMediaItem]()
 
     let selectedImageV = UIImageView()
     let pickButton = UIButton()
@@ -51,7 +51,7 @@ class ExampleViewController: UIViewController {
     @objc
     func showResults() {
         if selectedItems.count > 0 {
-            let gallery = YPSelectionsGalleryVC(items: selectedItems) { g, _ in
+            let gallery = TTDSelectionsGalleryVC(items: selectedItems) { g, _ in
                 g.dismiss(animated: true, completion: nil)
             }
             let navC = UINavigationController(rootViewController: gallery)
@@ -65,7 +65,7 @@ class ExampleViewController: UIViewController {
     @objc
     func showPicker() {
         
-        var config = YPImagePickerConfiguration()
+        var config = TTDImagePickerConfiguration()
 
         /* Uncomment and play around with the configuration 👨‍🔬 🚀 */
 
@@ -89,10 +89,10 @@ class ExampleViewController: UIViewController {
         // config.showsFilters = false
 
         /* Manage filters by yourself */
-//        config.filters = [YPFilter(name: "Mono", coreImageFilterName: "CIPhotoEffectMono"),
-//                          YPFilter(name: "Normal", coreImageFilterName: "")]
+//        config.filters = [TTDFilter(name: "Mono", coreImageFilterName: "CIPhotoEffectMono"),
+//                          TTDFilter(name: "Normal", coreImageFilterName: "")]
 //        config.filters.remove(at: 1)
-//        config.filters.insert(YPFilter(name: "Blur", coreImageFilterName: "CIBoxBlur"), at: 1)
+//        config.filters.insert(TTDFilter(name: "Blur", coreImageFilterName: "CIBoxBlur"), at: 1)
 
         /* Enables you to opt out from saving new (or old but filtered) images to the
            user's photo library. Defaults to true. */
@@ -102,7 +102,7 @@ class ExampleViewController: UIViewController {
         config.video.compression = AVAssetExportPresetMediumQuality
         
         /* Defines the name of the album when saving pictures in the user's photo library.
-           In general that would be your App name. Defaults to "DefaultYPImagePickerAlbumName" */
+           In general that would be your App name. Defaults to "DefaultTTDImagePickerAlbumName" */
         // config.albumName = "ThisIsMyAlbum"
 
         /* Defines which screen is shown at launch. Video mode will only work if `showsVideo = true`.
@@ -156,7 +156,7 @@ class ExampleViewController: UIViewController {
 
         /* Here we use a per picker configuration. Configuration is always shared.
            That means than when you create one picker with configuration, than you can create other picker with just
-           let picker = YPImagePicker() and the configuration will be the same as the first picker. */
+           let picker = TTDImagePicker() and the configuration will be the same as the first picker. */
         
         
         /* Only show library pictures from the last 3 days */
@@ -174,10 +174,10 @@ class ExampleViewController: UIViewController {
 
 //        config.library.preselectedItems = selectedItems
         
-        let picker = YPImagePicker(configuration: config)
+        let picker = TTDImagePicker(configuration: config)
 
         /* Change configuration directly */
-        // YPImagePickerConfiguration.shared.wordings.libraryTitle = "Gallery2"
+        // TTDImagePickerConfiguration.shared.wordings.libraryTitle = "Gallery2"
         
 
         /* Multiple media implementation */

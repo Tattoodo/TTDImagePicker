@@ -12,7 +12,7 @@ public protocol ThumbSelectorViewDelegate: class {
 // retrieve the exact frame of the asset that was selected.
 public class ThumbSelectorView: AVAssetTimeSelector {
 
-    public var thumbBorderColor: UIColor = YPConfig.colors.coverSelectorBorderColor {
+    public var thumbBorderColor: UIColor = TTDConfig.colors.coverSelectorBorderColor {
         didSet {
             thumbView.layer.borderColor = thumbBorderColor.cgColor
         }

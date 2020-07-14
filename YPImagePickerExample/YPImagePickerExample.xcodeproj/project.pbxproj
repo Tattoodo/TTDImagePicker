@@ -7,50 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6324858524BDB10500342B2D /* TTDImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6324858224BDAEC700342B2D /* TTDImagePicker.framework */; };
+		6324858624BDB10500342B2D /* TTDImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6324858224BDAEC700342B2D /* TTDImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99428A0A1E7BE02400B765A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99428A091E7BE02400B765A9 /* AppDelegate.swift */; };
 		99428A0C1E7BE02400B765A9 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99428A0B1E7BE02400B765A9 /* ExampleViewController.swift */; };
 		99428A111E7BE02400B765A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99428A101E7BE02400B765A9 /* Assets.xcassets */; };
 		99428A141E7BE02400B765A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99428A121E7BE02400B765A9 /* LaunchScreen.storyboard */; };
-		99428A271E7BE1D600B765A9 /* YPImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99428A201E7BE04000B765A9 /* YPImagePicker.framework */; };
-		99428A281E7BE1D600B765A9 /* YPImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99428A201E7BE04000B765A9 /* YPImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		997127C1208F45B30089272B /* PryntTrimmerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997127C0208F45B30089272B /* PryntTrimmerView.framework */; };
 		99A052A61F20DF21005600B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99A052A81F20DF21005600B3 /* Localizable.strings */; };
-		99CD962120D173EB009F5084 /* PryntTrimmerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 997127C0208F45B30089272B /* PryntTrimmerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		99428A1F1E7BE04000B765A9 /* PBXContainerItemProxy */ = {
+		6324858124BDAEC700342B2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */;
+			containerPortal = 99428A1B1E7BE04000B765A9 /* TTDImagePicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52412A931CA6114A0073C4BE;
-			remoteInfo = YPImagePicker;
-		};
-		99428A211E7BE0DE00B765A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 52412A921CA6114A0073C4BE;
-			remoteInfo = YPImagePicker;
-		};
-		99428A291E7BE1D600B765A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 52412A921CA6114A0073C4BE;
-			remoteInfo = YPImagePicker;
+			remoteInfo = TTDImagePicker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		99428A2B1E7BE1D600B765A9 /* Embed Frameworks */ = {
+		6324858724BDB10500342B2D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				99CD962120D173EB009F5084 /* PryntTrimmerView.framework in Embed Frameworks */,
-				99428A281E7BE1D600B765A9 /* YPImagePicker.framework in Embed Frameworks */,
+				6324858624BDB10500342B2D /* TTDImagePicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,7 +51,7 @@
 		99428A101E7BE02400B765A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99428A131E7BE02400B765A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99428A151E7BE02400B765A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YPImagePicker.xcodeproj; path = ../YPImagePicker.xcodeproj; sourceTree = "<group>"; };
+		99428A1B1E7BE04000B765A9 /* TTDImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TTDImagePicker.xcodeproj; path = ../TTDImagePicker.xcodeproj; sourceTree = "<group>"; };
 		997127C0208F45B30089272B /* PryntTrimmerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PryntTrimmerView.framework; path = ../Carthage/Build/iOS/PryntTrimmerView.framework; sourceTree = "<group>"; };
 		997A4CD11F4C3DC0009C3703 /* Stevia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stevia.framework; path = ../Carthage/Build/iOS/Stevia.framework; sourceTree = "<group>"; };
 		998D452620AC8DFA007F8699 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -87,18 +70,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				997127C1208F45B30089272B /* PryntTrimmerView.framework in Frameworks */,
-				99428A271E7BE1D600B765A9 /* YPImagePicker.framework in Frameworks */,
+				6324858524BDB10500342B2D /* TTDImagePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6324857E24BDAEC700342B2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6324858224BDAEC700342B2D /* TTDImagePicker.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		994289FD1E7BE02400B765A9 = {
 			isa = PBXGroup;
 			children = (
-				99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */,
+				99428A1B1E7BE04000B765A9 /* TTDImagePicker.xcodeproj */,
 				99428A081E7BE02400B765A9 /* YPImagePickerExample */,
 				99428A071E7BE02400B765A9 /* Products */,
 				99428A231E7BE17800B765A9 /* Frameworks */,
@@ -126,14 +116,6 @@
 			path = YPImagePickerExample;
 			sourceTree = "<group>";
 		};
-		99428A1C1E7BE04000B765A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				99428A201E7BE04000B765A9 /* YPImagePicker.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		99428A231E7BE17800B765A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,14 +135,12 @@
 				99428A021E7BE02400B765A9 /* Sources */,
 				99428A031E7BE02400B765A9 /* Frameworks */,
 				99428A041E7BE02400B765A9 /* Resources */,
-				99428A2B1E7BE1D600B765A9 /* Embed Frameworks */,
 				99BEB97920A9BD1300FFEB55 /* Localizations Sanitizer */,
+				6324858724BDB10500342B2D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				99428A221E7BE0DE00B765A9 /* PBXTargetDependency */,
-				99428A2A1E7BE1D600B765A9 /* PBXTargetDependency */,
 			);
 			name = YPImagePickerExample;
 			productName = YPImagePickerExample;
@@ -210,8 +190,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 99428A1C1E7BE04000B765A9 /* Products */;
-					ProjectRef = 99428A1B1E7BE04000B765A9 /* YPImagePicker.xcodeproj */;
+					ProductGroup = 6324857E24BDAEC700342B2D /* Products */;
+					ProjectRef = 99428A1B1E7BE04000B765A9 /* TTDImagePicker.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -222,11 +202,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		99428A201E7BE04000B765A9 /* YPImagePicker.framework */ = {
+		6324858224BDAEC700342B2D /* TTDImagePicker.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = YPImagePicker.framework;
-			remoteRef = 99428A1F1E7BE04000B765A9 /* PBXContainerItemProxy */;
+			path = TTDImagePicker.framework;
+			remoteRef = 6324858124BDAEC700342B2D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -272,19 +252,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		99428A221E7BE0DE00B765A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YPImagePicker;
-			targetProxy = 99428A211E7BE0DE00B765A9 /* PBXContainerItemProxy */;
-		};
-		99428A2A1E7BE1D600B765A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YPImagePicker;
-			targetProxy = 99428A291E7BE1D600B765A9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		99428A121E7BE02400B765A9 /* LaunchScreen.storyboard */ = {
@@ -434,7 +401,6 @@
 		99428A191E7BE02400B765A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -457,7 +423,6 @@
 		99428A1A1E7BE02400B765A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

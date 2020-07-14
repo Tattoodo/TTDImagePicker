@@ -1,11 +1,3 @@
-//
-//  AVAsset+Extensions.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 23.04.2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import AVFoundation
 
 // MARK: Trim
@@ -21,7 +13,7 @@ extension AVAsset {
                 try compositionTrack?.insertTimeRange(timeRange, of: track, at: CMTime.zero)
             }
         } catch let error {
-            throw YPTrimError("Error during composition", underlyingError: error)
+            throw TTDTrimError("Error during composition", underlyingError: error)
         }
         
         // Reaply correct transform to keep original orientation.
@@ -40,18 +32,18 @@ extension AVAsset {
     ///   - videoComposition: video composition settings, for example like crop
     ///   - removeOldFile: remove old video
     ///   - completion: resulting export closure
-    /// - Throws: YPTrimError with description
+    /// - Throws: TTDTrimError with description
     func export(to destination: URL,
                 videoComposition: AVVideoComposition? = nil,
                 removeOldFile: Bool = false,
                 completion: @escaping (_ exportSession: AVAssetExportSession) -> Void) -> AVAssetExportSession? {
-        guard let exportSession = AVAssetExportSession(asset: self, presetName: YPConfig.video.compression) else {
-            print("YPImagePicker -> AVAsset -> Could not create an export session.")
+        guard let exportSession = AVAssetExportSession(asset: self, presetName: TTDConfig.video.compression) else {
+            print("TTDImagePicker -> AVAsset -> Could not create an export session.")
             return nil
         }
         
         exportSession.outputURL = destination
-        exportSession.outputFileType = YPConfig.video.fileType
+        exportSession.outputFileType = TTDConfig.video.fileType
         exportSession.shouldOptimizeForNetworkUse = true
         exportSession.videoComposition = videoComposition
         

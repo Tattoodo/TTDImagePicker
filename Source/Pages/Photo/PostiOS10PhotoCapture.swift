@@ -1,18 +1,9 @@
-//
-//  PostiOS10PhotoCapture.swift
-//  YPImagePicker
-//
-//  Created by Sacha DSO on 08/03/2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 import AVFoundation
 
-@available(iOS 10.0, *)
-class PostiOS10PhotoCapture: NSObject, YPPhotoCapture, AVCapturePhotoCaptureDelegate {
+class PostiOS10PhotoCapture: NSObject, TTDPhotoCapture, AVCapturePhotoCaptureDelegate {
 
-    let sessionQueue = DispatchQueue(label: "YPCameraVCSerialQueue", qos: .background)
+    let sessionQueue = DispatchQueue(label: "TTDCameraVCSerialQueue", qos: .background)
     let session = AVCaptureSession()
     var deviceInput: AVCaptureDeviceInput?
     var device: AVCaptureDevice? { return deviceInput?.device }
@@ -22,7 +13,7 @@ class PostiOS10PhotoCapture: NSObject, YPPhotoCapture, AVCapturePhotoCaptureDele
     var isPreviewSetup: Bool = false
     var previewView: UIView!
     var videoLayer: AVCaptureVideoPreviewLayer!
-    var currentFlashMode: YPFlashMode = .off
+    var currentFlashMode: TTDFlashMode = .off
     var hasFlash: Bool {
         guard let device = device else { return false }
         return device.hasFlash

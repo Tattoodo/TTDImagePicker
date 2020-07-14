@@ -1,17 +1,9 @@
-//
-//  LibraryMediaManager.swift
-//  YPImagePicker
-//
-//  Created by Sacha DSO on 26/01/2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 import Photos
 
 class LibraryMediaManager {
     
-    weak var v: YPLibraryView?
+    weak var v: TTDLibraryView?
     var collection: PHAssetCollection?
     internal var fetchResult: PHFetchResult<PHAsset>!
     internal var previousPreheatRect: CGRect = .zero
@@ -118,7 +110,7 @@ class LibraryMediaManager {
                 // 5. Configuring export session
 
                 let fileURL = URL(fileURLWithPath: NSTemporaryDirectory())
-                    .appendingUniquePathComponent(pathExtension: YPConfig.video.fileType.fileExtension)
+                    .appendingUniquePathComponent(pathExtension: TTDConfig.video.fileType.fileExtension)
                 let exportSession = assetComposition
                     .export(to: fileURL,
                             videoComposition: videoComposition,

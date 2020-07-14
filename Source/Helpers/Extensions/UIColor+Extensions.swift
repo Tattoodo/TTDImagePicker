@@ -1,11 +1,3 @@
-//
-//  UIColor+Extensions.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 26.04.2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 
 extension UIColor {

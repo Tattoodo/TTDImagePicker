@@ -1,11 +1,3 @@
-//
-//  UIImage+ResetOrientation.swift
-//  YPImagePicker
-//
-//  Created by Sacha DSO on 20/02/2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 
 internal extension UIImage {
@@ -82,7 +74,7 @@ internal extension UIImage {
     
     // Reduce image size further if needed targetImageSize is capped.
     func resizedImageIfNeeded() -> UIImage {
-        if case let YPImageSize.cappedTo(size: capped) = YPConfig.targetImageSize {
+        if case let TTDImageSize.cappedTo(size: capped) = TTDConfig.targetImageSize {
             let size = cappedSize(for: self.size, cappedAt: capped)
             if let resizedImage = self.resized(to: size) {
                 return resizedImage

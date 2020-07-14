@@ -1,11 +1,3 @@
-//
-//  CGFloat+Extensions.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 16.05.2018.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 
 infix operator &/

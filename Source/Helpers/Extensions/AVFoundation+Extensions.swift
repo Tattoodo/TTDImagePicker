@@ -1,11 +1,3 @@
-//
-//  AVCaptureDevice+Extensions.swift
-//  YPImagePicker
-//
-//  Created by Nik Kov on 09.04.18.
-//  Copyright © 2018 Yummypets. All rights reserved.
-//
-
 import UIKit
 import Foundation
 import AVFoundation

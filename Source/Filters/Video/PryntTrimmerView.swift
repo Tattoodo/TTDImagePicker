@@ -16,21 +16,21 @@ public protocol TrimmerViewDelegate: class {
     // MARK: - Properties
     // MARK: Color Customization
     /// The color of the main border of the view
-    @IBInspectable public var mainColor: UIColor = YPConfig.colors.trimmerMainColor {
+    @IBInspectable public var mainColor: UIColor = TTDConfig.colors.trimmerMainColor {
         didSet {
             updateMainColor()
         }
     }
 
     /// The color of the handles on the side of the view
-    @IBInspectable public var handleColor: UIColor = YPConfig.colors.trimmerHandleColor {
+    @IBInspectable public var handleColor: UIColor = TTDConfig.colors.trimmerHandleColor {
         didSet {
            updateHandleColor()
         }
     }
 
     /// The color of the position indicator
-    @IBInspectable public var positionBarColor: UIColor =  YPConfig.colors.positionLineColor {
+    @IBInspectable public var positionBarColor: UIColor =  TTDConfig.colors.positionLineColor {
         didSet {
             positionBar.backgroundColor = positionBarColor
         }
@@ -67,7 +67,7 @@ public protocol TrimmerViewDelegate: class {
     private let handleWidth: CGFloat = 15
 
     /// The minimum duration allowed for the trimming. The handles won't pan further if the minimum duration is attained.
-    public var minDuration: Double = YPConfig.video.trimmerMinDuration
+    public var minDuration: Double = TTDConfig.video.trimmerMinDuration
 
     // MARK: - View & constraints configurations
     override func setupSubviews() {
