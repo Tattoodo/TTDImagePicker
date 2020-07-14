@@ -46,13 +46,6 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
         super.viewDidLoad()
 
         view.backgroundColor = YPConfig.colors.filterBackgroundColor
-        trimmerView.mainColor = YPConfig.colors.trimmerMainColor
-        trimmerView.handleColor = YPConfig.colors.trimmerHandleColor
-        trimmerView.positionBarColor = YPConfig.colors.positionLineColor
-        trimmerView.maxDuration = YPConfig.video.trimmerMaxDuration
-        trimmerView.minDuration = YPConfig.video.trimmerMinDuration
-        
-        coverThumbSelectorView.thumbBorderColor = YPConfig.colors.coverSelectorBorderColor
 
         trimBottomItem.button.addTarget(self, action: #selector(selectTrim), for: .touchUpInside)
         coverBottomItem.button.addTarget(self, action: #selector(selectCover), for: .touchUpInside)
