@@ -54,7 +54,7 @@ public struct TTDImagePickerConfiguration {
     
     /// Defines which screen is shown at launch. Video mode will only work if `showsVideo = true`.
     /// Default value is `.photo`
-    public var startOnScreen: TTDPickerScreen = .photo
+    public var startOnScreen: TTDPickerScreen = .photoLibrary
     
     /// Defines which screens are shown at launch, and their order.
     /// Default value is `[.library, .photo]`
@@ -165,9 +165,6 @@ public struct TTDConfigLibrary {
     
     /// Minimum width, to prevent selectiong too high images. Have sense if onlySquare is true and the image is portrait.
     public var minWidthForItem: CGFloat?
-    
-    /// Choose what media types are available in the library. Defaults to `.photo`
-    public var mediaType = TTDlibraryMediaType.video
 
     /// Initial state of multiple selection button.
     public var defaultMultipleSelection = false

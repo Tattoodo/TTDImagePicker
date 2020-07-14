@@ -55,7 +55,7 @@ class TTDAlbumsManager {
     
     func mediaCountFor(collection: PHAssetCollection) -> Int {
         let options = PHFetchOptions()
-        options.predicate = TTDConfig.library.mediaType.predicate()
+        options.predicate = TTDlibraryMediaType.photoAndVideo.predicate()
         let result = PHAsset.fetchAssets(in: collection, options: options)
         return result.count
     }

@@ -79,9 +79,6 @@ class ExampleViewController: UIViewController {
            resized to fit in a 1024x1024 box. Defaults to original image size. */
         // config.targetImageSize = .cappedTo(size: 1024)
 
-        /* Choose what media types are available in the library. Defaults to `.photo` */
-        config.library.mediaType = .photoAndVideo
-
         /* Enables selecting the front camera by default, useful for avatars. Defaults to false */
         // config.usesFrontCamera = true
 

@@ -196,16 +196,6 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
         // Use standard font by default.
         label.font = UIFont.boldSystemFont(ofSize: 17)
         
-        // Use custom font if set by user.
-        if let navBarTitleFont = UINavigationBar.appearance().titleTextAttributes?[.font] as? UIFont {
-            // Use custom font if set by user.
-            label.font = navBarTitleFont
-        }
-        // Use custom textColor if set by user.
-        if let navBarTitleColor = UINavigationBar.appearance().titleTextAttributes?[.foregroundColor] as? UIColor {
-            label.textColor = navBarTitleColor
-        }
-        
         if TTDConfig.library.options != nil || !includeAlbumButton {
             titleView.addArrangedSubview(label)
         } else {
