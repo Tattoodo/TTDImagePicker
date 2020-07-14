@@ -31,11 +31,11 @@ public class CropViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         setupCropToolbarActions()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-        
+
     fileprivate func setupCropToolbarActions() {
         cropToolbar.onAspectRatioChange = { [weak self] ratio in
             self?.setFixedRatio(ratio)
