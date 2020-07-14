@@ -10,10 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YPVideoFiltersVC" customModule="YPImagePicker" customModuleProvider="target">
             <connections>
-                <outlet property="coverBottomItem" destination="qy9-MY-67C" id="LaY-F2-uVO"/>
+                <outlet property="coverBottomItem" destination="uB8-a7-Vh0" id="KLA-Wa-ABQ"/>
                 <outlet property="coverImageView" destination="daH-No-sZc" id="sNy-7V-7gV"/>
                 <outlet property="coverThumbSelectorView" destination="Tqq-Gf-aeR" id="CZG-rg-NWB"/>
-                <outlet property="trimBottomItem" destination="uB8-a7-Vh0" id="7Rn-9o-WWN"/>
+                <outlet property="trimBottomItem" destination="qy9-MY-67C" id="4Nn-fA-6s7"/>
                 <outlet property="trimmerView" destination="W4N-1E-jNP" id="a4g-Mg-65j"/>
                 <outlet property="videoView" destination="AFl-Bk-oPH" id="x8U-ib-yqT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,14 +24,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qy9-MY-67C" customClass="YPMenuItem" customModule="YPImagePicker" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qy9-MY-67C" customClass="YPTextMenuItem" customModule="YPImagePicker" customModuleProvider="target">
                     <rect key="frame" x="187.5" y="627" width="187.5" height="40"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Ik5-9V-0hz"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uB8-a7-Vh0" customClass="YPMenuItem" customModule="YPImagePicker" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uB8-a7-Vh0" customClass="YPTextMenuItem" customModule="YPImagePicker" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="627" width="187.5" height="40"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

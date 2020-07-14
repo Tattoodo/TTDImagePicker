@@ -69,7 +69,7 @@ open class YPBottomPager: UIViewController, UIScrollViewDelegate {
         
         // Build headers
         for (index, c) in controllers.enumerated() {
-            let menuItem = YPMenuItem()
+            let menuItem = YPImageMenuItem()
             menuItem.selectedImage = c.tabBarItem.selectedImage
             menuItem.unselectedImage = c.tabBarItem.image
             menuItem.button.tag = index

@@ -12,6 +12,7 @@
 		6324857524BDA34000342B2D /* AssetVideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6324857424BDA34000342B2D /* AssetVideoScrollView.swift */; };
 		6324857724BDA38200342B2D /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6324857624BDA38200342B2D /* HandlerView.swift */; };
 		6324857924BDA39000342B2D /* PryntTrimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6324857824BDA39000342B2D /* PryntTrimmerView.swift */; };
+		6324857D24BDAB2300342B2D /* YPTextMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6324857C24BDAB2300342B2D /* YPTextMenuItem.swift */; };
 		6339142C24BC5C4C006856AF /* CropAspectSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339142B24BC5C4B006856AF /* CropAspectSelector.swift */; };
 		6339142E24BC69D7006856AF /* CropToolbarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339142D24BC69D7006856AF /* CropToolbarMenu.swift */; };
 		6339146B24BCB495006856AF /* RatioOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339143F24BCB495006856AF /* RatioOptions.swift */; };
@@ -48,7 +49,7 @@
 		99019E4E2018CD31007325C2 /* YPPagerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E4D2018CD31007325C2 /* YPPagerMenu.swift */; };
 		99019E512018CDED007325C2 /* YPImageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E502018CDED007325C2 /* YPImageSize.swift */; };
 		99019E532018CE19007325C2 /* YPPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E522018CE19007325C2 /* YPPickerScreen.swift */; };
-		99019E562018D008007325C2 /* YPMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E552018D008007325C2 /* YPMenuItem.swift */; };
+		99019E562018D008007325C2 /* YPImageMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99019E552018D008007325C2 /* YPImageMenuItem.swift */; };
 		990FD28F201A49D3002A39A1 /* YPPermissionCheckable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990FD28E201A49D3002A39A1 /* YPPermissionCheckable.swift */; };
 		990FD293201B3D69002A39A1 /* YPLibraryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990FD292201B3D69002A39A1 /* YPLibraryViewDelegate.swift */; };
 		990FD295201B3E59002A39A1 /* YPDragDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990FD294201B3E59002A39A1 /* YPDragDirection.swift */; };
@@ -141,6 +142,7 @@
 		6324857424BDA34000342B2D /* AssetVideoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetVideoScrollView.swift; sourceTree = "<group>"; };
 		6324857624BDA38200342B2D /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
 		6324857824BDA39000342B2D /* PryntTrimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PryntTrimmerView.swift; sourceTree = "<group>"; };
+		6324857C24BDAB2300342B2D /* YPTextMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPTextMenuItem.swift; sourceTree = "<group>"; };
 		6339142B24BC5C4B006856AF /* CropAspectSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropAspectSelector.swift; sourceTree = "<group>"; };
 		6339142D24BC69D7006856AF /* CropToolbarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropToolbarMenu.swift; sourceTree = "<group>"; };
 		6339143F24BCB495006856AF /* RatioOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioOptions.swift; sourceTree = "<group>"; };
@@ -178,7 +180,7 @@
 		99019E4D2018CD31007325C2 /* YPPagerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPagerMenu.swift; sourceTree = "<group>"; };
 		99019E502018CDED007325C2 /* YPImageSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPImageSize.swift; sourceTree = "<group>"; };
 		99019E522018CE19007325C2 /* YPPickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPickerScreen.swift; sourceTree = "<group>"; };
-		99019E552018D008007325C2 /* YPMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPMenuItem.swift; sourceTree = "<group>"; };
+		99019E552018D008007325C2 /* YPImageMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPImageMenuItem.swift; sourceTree = "<group>"; };
 		990FD28E201A49D3002A39A1 /* YPPermissionCheckable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPPermissionCheckable.swift; sourceTree = "<group>"; };
 		990FD292201B3D69002A39A1 /* YPLibraryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPLibraryViewDelegate.swift; sourceTree = "<group>"; };
 		990FD294201B3E59002A39A1 /* YPDragDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YPDragDirection.swift; sourceTree = "<group>"; };
@@ -399,7 +401,8 @@
 				99C6D6AF1F1FB5C100711DB2 /* YPBottomPager.swift */,
 				99019E4B2018CCD6007325C2 /* YPBottomPagerView.swift */,
 				99019E4D2018CD31007325C2 /* YPPagerMenu.swift */,
-				99019E552018D008007325C2 /* YPMenuItem.swift */,
+				99019E552018D008007325C2 /* YPImageMenuItem.swift */,
+				6324857C24BDAB2300342B2D /* YPTextMenuItem.swift */,
 			);
 			path = BottomPager;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 				6339148924BCB495006856AF /* RotationDial+Touches.swift in Sources */,
 				990FD28F201A49D3002A39A1 /* YPPermissionCheckable.swift in Sources */,
 				EB473E23208E1DB000D16105 /* AVPlayer+Extensions.swift in Sources */,
+				6324857D24BDAB2300342B2D /* YPTextMenuItem.swift in Sources */,
 				6339147A24BCB495006856AF /* CropScrollView.swift in Sources */,
 				99278DA820512BD90059532E /* PreiOS10PhotoCapture.swift in Sources */,
 				EBD2B641207B7D7400E711C2 /* YPMediaItem.swift in Sources */,
@@ -807,7 +811,7 @@
 				6324857324BDA31900342B2D /* AVAssetTimeSelector.swift in Sources */,
 				99C6D6CE1F1FB5C100711DB2 /* YPPhotoSaver.swift in Sources */,
 				99C6D6C31F1FB5C100711DB2 /* YPCameraView.swift in Sources */,
-				99019E562018D008007325C2 /* YPMenuItem.swift in Sources */,
+				99019E562018D008007325C2 /* YPImageMenuItem.swift in Sources */,
 				AA69BCF222E601D100FBB925 /* YPDeviceOrientationHelper.swift in Sources */,
 				9915D9D32087E692003FC307 /* YPLibrarySelection.swift in Sources */,
 				EB1AB2EA20AC1DED00BFA79F /* CGFloat+Extensions.swift in Sources */,

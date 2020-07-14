@@ -11,8 +11,8 @@ import Photos
 
 public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
     
-    @IBOutlet weak var trimBottomItem: YPMenuItem!
-    @IBOutlet weak var coverBottomItem: YPMenuItem!
+    @IBOutlet weak var trimBottomItem: YPTextMenuItem!
+    @IBOutlet weak var coverBottomItem: YPTextMenuItem!
     
     @IBOutlet weak var videoView: YPVideoView!
     @IBOutlet weak var trimmerView: TrimmerView!
@@ -46,7 +46,8 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
         super.viewDidLoad()
 
         view.backgroundColor = YPConfig.colors.filterBackgroundColor
-
+        trimBottomItem.titleLabel.text = ypLocalized("YPImagePickerTrim")
+        coverBottomItem.titleLabel.text = ypLocalized("YPImagePickerCover")
         trimBottomItem.button.addTarget(self, action: #selector(selectTrim), for: .touchUpInside)
         coverBottomItem.button.addTarget(self, action: #selector(selectCover), for: .touchUpInside)
         

@@ -257,10 +257,9 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
                                                            target: self,
                                                            action: #selector(close))
         switch mode { //TODO: refactor this
-        case .videoLibraryMode:
-            setTitleViewWithTitle(aTitle: "Videos", includeAlbumButton: false) //TODO: localize
-        case .photoLibraryMode:
-            setTitleViewWithTitle(aTitle: currentLibraryVC?.title ?? "")
+        case .photoLibraryMode, .videoLibraryMode:
+            let isVideoMode = mode == .videoLibraryMode
+            isVideoMode ? setTitleViewWithTitle(aTitle: "Videos", includeAlbumButton: false) : setTitleViewWithTitle(aTitle: currentLibraryVC?.title ?? "")
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
                                                                 style: .done,
                                                                 target: self,

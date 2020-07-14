@@ -11,7 +11,7 @@ import UIKit
 final class YPPagerMenu: UIView { //TODO: selected segment control
     var bottomConstraint: NSLayoutConstraint!
     var didSetConstraints = false
-    var menuItems = [YPMenuItem]()
+    var menuItems = [YPImageMenuItem]()
     
     convenience init() {
         self.init(frame: .zero)
@@ -23,7 +23,7 @@ final class YPPagerMenu: UIView { //TODO: selected segment control
     
     func setUpMenuItemsConstraints() {
         let menuItemWidth: CGFloat = UIScreen.main.bounds.width / CGFloat(menuItems.count)
-        var previousMenuItem: YPMenuItem?
+        var previousMenuItem: YPImageMenuItem?
         for m in menuItems {
             m.translatesAutoresizingMaskIntoConstraints = false
             addSubview(m)
