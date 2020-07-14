@@ -53,9 +53,6 @@ public class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
         trimmerView.minDuration = YPConfig.video.trimmerMinDuration
         
         coverThumbSelectorView.thumbBorderColor = YPConfig.colors.coverSelectorBorderColor
-        
-//        trimBottomItem.textLabel.text = YPConfig.wordings.trim
-//        coverBottomItem.textLabel.text = YPConfig.wordings.cover
 
         trimBottomItem.button.addTarget(self, action: #selector(selectTrim), for: .touchUpInside)
         coverBottomItem.button.addTarget(self, action: #selector(selectCover), for: .touchUpInside)
