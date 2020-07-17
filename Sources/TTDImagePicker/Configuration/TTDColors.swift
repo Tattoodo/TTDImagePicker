@@ -6,6 +6,9 @@ public struct TTDColors {
     
     /// The common tint color which is used for done buttons in navigation bar, multiple items selection and so on.
     public var tintColor = UIColor.ypSystemBlue
+
+    /// The tint color which is used for cancel buttons in navigation bar, etc.
+    public var secondaryTintColor: UIColor = .labelColor
     
     /// A color for navigation bar spinner.
     /// Default is nil, which is default iOS gray UIActivityIndicator.

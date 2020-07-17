@@ -238,6 +238,7 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(close))
+        navigationItem.leftBarButtonItem?.tintColor = TTDConfig.colors.secondaryTintColor
         switch mode { //TODO: refactor this
         case .photoLibraryMode, .videoLibraryMode:
             let isVideoMode = mode == .videoLibraryMode
