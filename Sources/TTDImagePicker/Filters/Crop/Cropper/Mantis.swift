@@ -1,13 +1,7 @@
 import UIKit
 
 public func cropViewController(image: UIImage,
-                               config: Config = Config()) -> CropViewController {
-    return CropViewController(image: image,
-                              config: config)
-}
-
-public func cropCustomizableViewController(image: UIImage,
-                                           config: Config = Config()) -> CropViewController {
+                               config: CropperConfig = CropperConfig()) -> CropViewController {
     return CropViewController(image: image,
                               config: config)
 }
@@ -53,7 +47,7 @@ public enum CropShapeType {
 }
 
 
-public struct Config {
+public struct CropperConfig {
     public var presetTransformationType: PresetTransformationType = .none
     public var cropShapeType: CropShapeType = .rect
     public var ratioOptions: RatioOptions = .all

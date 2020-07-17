@@ -19,8 +19,8 @@ public class TTDVideoFiltersVC: UIViewController, IsMediaFilterVC {
     private var imageGenerator: AVAssetImageGenerator?
     private var isFromSelectionVC = false
     
-    var didSave: ((TTDMediaItem) -> Void)?
-    var didCancel: (() -> Void)?
+    public var didSave: ((TTDMediaItem) -> Void)?
+    public var didCancel: (() -> Void)?
 
     /// Designated initializer
     public class func initWith(video: TTDMediaVideo,

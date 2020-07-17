@@ -1,6 +1,6 @@
 import UIKit
 
-protocol IsMediaFilterVC: class {
+public protocol IsMediaFilterVC: class {
     var didSave: ((TTDMediaItem) -> Void)? { get set }
     var didCancel: (() -> Void)? { get set }
 }

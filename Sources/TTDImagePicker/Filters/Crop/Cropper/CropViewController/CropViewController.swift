@@ -11,7 +11,7 @@ public class CropViewController: UIViewController {
         }
     }
 
-    public var config = Config()
+    public var config = CropperConfig()
     private var orientation: UIInterfaceOrientation = .unknown
     private lazy var cropView = CropView(image: image, viewModel: CropViewModel())
     private lazy var fixedRatioManager: FixedRatioManager = { getFixedRatioManager() }()
@@ -25,7 +25,7 @@ public class CropViewController: UIViewController {
     }
     
     init(image: UIImage,
-         config: Config = Config()) {
+         config: CropperConfig = CropperConfig()) {
         self.image = image
         self.config = config
         super.init(nibName: nil, bundle: nil)
