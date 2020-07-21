@@ -20,3 +20,11 @@
 "TTDImagePickerVideoTooLong" = "Pick a video less than %@ seconds long";
 "TTDImagePickerVideoTooShort" = "The video must be at least %@ seconds";
 "TTDImagePickerWarningItemsLimit" = "The limit is %d photos or videos";
+
+"TTDImageEmpyViewNoImages" = "No Images";
+"TTDImageEmptyViewNoVideos" = "No Videos";
+"TTDImageEmptyViewNoImagesMessage" = "Looks like there aren’t any images available. Take a photo to upload your first image.";
+"TTDImageEmptyViewNoVideosMessage" = "Looks like there aren’t any videos available. Create a new video or upload an image instead.";
+"TTDImageEmptyViewNoPhotosButtonTitle" = "Take a Photo";
+"TTDImageEmptyViewNoVideosButtonTitle" = "Upload Image";
+

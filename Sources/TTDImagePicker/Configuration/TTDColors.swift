@@ -13,7 +13,14 @@ public struct TTDColors {
     /// A color for navigation bar spinner.
     /// Default is nil, which is default iOS gray UIActivityIndicator.
     public var navigationBarActivityIndicatorColor: UIColor?
-    
+
+    //MARK: Empty view's colors
+    public var emptyViewMessageTextColor: UIColor = .secondaryLabelColor
+    public var emptyViewTitleTextColor: UIColor = .labelColor
+    public var emptyViewImageContainerColor: UIColor = UIColor.init(r: 0.13, g: 0.13, b: 0.15).withAlphaComponent(0.04)
+    public var emptyViewButtonTitleColor: UIColor = UIColor.labelColor.withAlphaComponent(0.8)
+    public var emptyViewButtonBorderColor: UIColor = UIColor.labelColor.withAlphaComponent(0.12)
+
     /// A color for circle for selected items in multiple selection
     /// Default is nil, which takes tintColor.
     public var multipleItemsSelectedCircleColor: UIColor?

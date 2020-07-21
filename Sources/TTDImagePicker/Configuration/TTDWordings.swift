@@ -1,9 +1,18 @@
 import Foundation
 
 public struct TTDWordings {
-    
     public var permissionPopup = PermissionPopup()
     public var videoDurationPopup = VideoDurationPopup()
+    public var emptyView = EmptyView()
+
+    public struct EmptyView {
+        public var noImagesTitle = localized("TTDImageEmpyViewNoImages")
+        public var noVideosTitle = localized("TTDImageEmptyViewNoVideos")
+        public var noImagesMessage = localized("TTDImageEmptyViewNoImagesMessage")
+        public var noVideosMessage = localized("TTDImageEmptyViewNoVideosMessage")
+        public var noPhotosButtonTitle = localized("TTDImageEmptyViewNoPhotosButtonTitle")
+        public var noVideosButtonTitle = localized("TTDImageEmptyViewNoVideosButtonTitle")
+    }
 
     public struct PermissionPopup {
         public var title = localized("TTDImagePickerPermissionDeniedPopupTitle")

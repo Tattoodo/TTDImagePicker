@@ -9,7 +9,20 @@ final class TTDLibraryView: UIView {
     @IBOutlet weak var assetZoomableView: TTDAssetZoomableView!
     @IBOutlet weak var assetViewContainer: TTDAssetViewContainer!
     @IBOutlet weak var assetViewContainerConstraintTop: NSLayoutConstraint!
-    
+
+    private lazy var emptyViewContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+
+    lazy var emptyView: EmptyView = {
+       let view = EmptyView()
+        view.isLayoutMarginsRelativeArrangement = true
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40)
+        return view
+    }()
+
     lazy var maxNumberWarningView: UIView = {
         let view = UIView()
         view.backgroundColor = .ypSecondarySystemBackground
@@ -48,6 +61,7 @@ final class TTDLibraryView: UIView {
         super.awakeFromNib()
         collectionView.contentInset.top = 4
         addSubview(line)
+
         NSLayoutConstraint.activate([
             line.topAnchor.constraint(equalTo: assetViewContainer.bottomAnchor),
             line.widthAnchor.constraint(equalTo: assetViewContainer.widthAnchor),
@@ -55,6 +69,7 @@ final class TTDLibraryView: UIView {
         ])
         setupMaxNumberOfItemsView()
         setupProgressBarView()
+        setupEmptyView()
     }
     
     /// At the bottom there is a view that is visible when selected a limit of items with multiple selection
@@ -86,6 +101,30 @@ final class TTDLibraryView: UIView {
             progressView.widthAnchor.constraint(equalTo: line.widthAnchor),
             progressView.centerXAnchor.constraint(equalTo: line.centerXAnchor)
         ])
+    }
+
+    func setupEmptyView() {
+        emptyViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(emptyViewContainer)
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyViewContainer.addSubview(emptyView)
+        NSLayoutConstraint.activate([
+            emptyViewContainer.topAnchor.constraint(equalTo: topAnchor),
+            emptyViewContainer.widthAnchor.constraint(equalTo: widthAnchor),
+            emptyViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            emptyViewContainer.heightAnchor.constraint(equalTo: heightAnchor),
+
+            emptyView.centerXAnchor.constraint(equalTo: emptyViewContainer.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: emptyViewContainer.centerYAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: emptyViewContainer.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: emptyViewContainer.trailingAnchor)
+        ])
+    }
+
+    func setEmptyState(hidden: Bool, animated: Bool = true) {
+        UIView.animate(withDuration: animated ? 0.3 : 0.0) {
+            self.emptyViewContainer.alpha = hidden ? 0 : 1
+        }
     }
 }
 

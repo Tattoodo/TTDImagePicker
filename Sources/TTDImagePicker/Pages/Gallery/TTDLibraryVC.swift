@@ -2,7 +2,6 @@ import UIKit
 import Photos
 
 public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
-    
     internal weak var delegate: TTDLibraryViewDelegate?
     internal var v: TTDLibraryView!
     internal var isProcessing = false // true if video or image is in processing state
@@ -14,13 +13,13 @@ public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
     internal var latestImageTapped = ""
     internal let panGestureHelper = PanGestureHelper()
     private let mediaType: TTDlibraryMediaType
+    var isImagesGallery: Bool { mediaType == .photo }
 
     // MARK: - Init
     public required init(items: [TTDMediaItem]?, mediaType: TTDlibraryMediaType) {
         self.mediaType = mediaType
         super.init(nibName: nil, bundle: nil)
         title = TTDConfig.wordings.libraryTitle
-        var isImagesGallery = mediaType == .photo
         tabBarItem.selectedImage = imageFromBundle(isImagesGallery ? "imageGallerySelected" : "videoGallerySelected")
         tabBarItem.image = imageFromBundle(isImagesGallery ? "imageGalleryUnselected" : "videoGalleryUnselected")
     }
@@ -44,6 +43,17 @@ public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
     }
     
     func initialize() {
+        v.setEmptyState(hidden: true, animated: false)
+        v.emptyView.set(title: isImagesGallery ? TTDConfig.wordings.emptyView.noImagesTitle : TTDConfig.wordings.emptyView.noVideosTitle,
+                        message: isImagesGallery ? TTDConfig.wordings.emptyView.noImagesMessage : TTDConfig.wordings.emptyView.noVideosMessage,
+                        buttonTitle: isImagesGallery ? TTDConfig.wordings.emptyView.noPhotosButtonTitle : TTDConfig.wordings.emptyView.noVideosButtonTitle,
+                        icon: isImagesGallery ? imageFromBundle("imageGallerySelected") : imageFromBundle("videoGallerySelected"))
+
+        v.emptyView.onTap = { [weak self] in
+            guard let self = self else { return }
+            self.isImagesGallery ? self.delegate?.didTapTakePicture() : self.delegate?.didTapUploadImage()
+        }
+
         mediaManager.initialize()
         mediaManager.v = v
 
@@ -268,6 +278,7 @@ public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
         }
                 
         if mediaManager.fetchResult.count > 0 {
+            v.setEmptyState(hidden: true)
             changeAsset(mediaManager.fetchResult[0])
             v.collectionView.reloadData()
             v.collectionView.selectItem(at: IndexPath(row: 0, section: 0),
@@ -278,7 +289,7 @@ public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
             }
         } else {
             delegate?.noPhotosForOptions()
-            //TODO: - show empty state
+            v.setEmptyState(hidden: false)
         }
         scrollToTop()
         v.collectionView.reloadData()

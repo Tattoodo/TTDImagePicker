@@ -292,6 +292,13 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
 }
 
 extension TTDPickerVC: TTDLibraryViewDelegate {
+    public func didTapUploadImage() {
+        showPage(0)
+    }
+
+    public func didTapTakePicture() {
+        showPage(controllers.count - 1)
+    }
     
     public func libraryViewDidTapNext() {
         photoLibraryVC?.isProcessing = true

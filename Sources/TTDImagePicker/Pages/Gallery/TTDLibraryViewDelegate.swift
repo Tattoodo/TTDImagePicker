@@ -7,4 +7,6 @@ public protocol TTDLibraryViewDelegate: class {
     func libraryViewFinishedLoading()
     func libraryViewDidToggleMultipleSelection(enabled: Bool)
     func noPhotosForOptions()
+    func didTapUploadImage()
+    func didTapTakePicture()
 }

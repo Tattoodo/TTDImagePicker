@@ -92,7 +92,6 @@ open class TTDPhotoFiltersVC: UIViewController, IsMediaFilterVC, UIGestureRecogn
     }
     
     // MARK: Setup - ⚙️
-    
     fileprivate func setupRightBarButton() {
         let rightBarButtonTitle = isFromSelectionVC ? TTDConfig.wordings.done : TTDConfig.wordings.next
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightBarButtonTitle,
