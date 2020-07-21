@@ -3,7 +3,7 @@ import UIKit
 final class TTDImageMenuItem: UIView {
     var selectedImage: UIImage?
     var unselectedImage: UIImage?
-
+    var onSelected: (TTDImageMenuItem) -> Void = { _ in }
     lazy var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .center
@@ -47,6 +47,7 @@ final class TTDImageMenuItem: UIView {
 
     func select() {
         imageView.image = selectedImage
+        onSelected(self)
     }
 
     func deselect() {
