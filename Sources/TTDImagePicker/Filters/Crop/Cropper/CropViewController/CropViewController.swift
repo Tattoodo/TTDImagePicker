@@ -53,7 +53,6 @@ public class CropViewController: UIViewController {
         
     fileprivate func getFixedRatioManager() -> FixedRatioManager {
         let type: RatioType = cropView.getRatioType(byImageIsOriginalisHorizontal: cropView.image.isHorizontal())
-        
         let ratio = cropView.getImageRatioH()
         
         return FixedRatioManager(type: type,
@@ -94,7 +93,6 @@ public class CropViewController: UIViewController {
             cropView.adaptForCropBox()
         }
     }
-    
     public override var prefersStatusBarHidden: Bool { false }
     public override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge { return [.top, .bottom] }
 
@@ -131,6 +129,9 @@ public class CropViewController: UIViewController {
         super.viewDidAppear(animated)
         if case .presetInfo(let transformInfo) = config.presetTransformationType {
             cropView.transform(byTransformInfo: transformInfo)
+        }
+        if case PresetFixedRatioType.alwaysUsingOnePresetFixedRatio(let ratio) = config.presetFixedRatioType {
+            setFixedRatio(ratio)
         }
     }
 

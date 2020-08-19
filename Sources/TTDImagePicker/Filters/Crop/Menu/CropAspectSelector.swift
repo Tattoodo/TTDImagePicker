@@ -9,11 +9,18 @@ class CropAspectSelector: UIView {
     private(set) var selectedOption: RatioItemType {
         didSet {
             updateSelection()
-            let ratio = isHorizontal ? selectedOption.ratioH : selectedOption.ratioV
-            let name = isHorizontal ? selectedOption.nameH : selectedOption.nameV
-            onSelectedRatioChanged(ratio, name)
+            let name = self.name(for: selectedOption)
+            onSelectedRatioChanged(selectedRatio, name)
             onClose()
         }
+    }
+
+    func name(for item: RatioItemType) -> String {
+        isHorizontal ? item.nameH : item.nameV
+    }
+
+    var selectedRatio: Double {
+        isHorizontal ? selectedOption.ratioH : selectedOption.ratioV
     }
 
     private let buttonTagOffset = 1000
@@ -49,6 +56,9 @@ class CropAspectSelector: UIView {
         super.init(frame: .zero)
         setupViews()
         setupData()
+        if let option = options.first {
+            selectedOption = option
+        }
     }
 
     required init?(coder: NSCoder) {

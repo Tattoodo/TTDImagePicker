@@ -123,6 +123,7 @@ class ExampleViewController: UIViewController {
 
         /* Adds a Crop step in the photo taking process, after filters. Defaults to true */
         config.showsCrop = true
+        config.cropperConfig.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 2)
 
         /* Defines the overlay view for the camera. Defaults to UIView(). */
         // let overlayView = UIView()

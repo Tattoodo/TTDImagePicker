@@ -97,7 +97,7 @@ override open func viewDidLoad() {
                 
                 func showCropVC(photo: TTDMediaPhoto, completion: @escaping (_ aphoto: TTDMediaPhoto) -> Void) {
                     if TTDConfig.showsCrop {
-                        let vc = cropViewController(image: photo.image)
+                        let vc = cropViewController(image: photo.image, config: TTDConfig.cropperConfig)
                         vc.didFinishCropping = { result in
                             switch result {
                             case .success(let croppedImage):

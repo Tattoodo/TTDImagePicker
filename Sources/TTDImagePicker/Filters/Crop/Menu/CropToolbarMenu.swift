@@ -5,13 +5,15 @@ class CropToolbarMenu: UIView {
     var onFlipAction: () -> Void = {}
     var onResetActionTap: () -> Void = {}
     private let ratioManager: FixedRatioManager
-    private lazy var aspectSelector: CropAspectSelector = {
+    lazy var aspectSelector: CropAspectSelector = {
         CropAspectSelector(ratioManager: ratioManager)
     }()
 
     private lazy var hStack: UIStackView = {
         let view = UIStackView()
-        view.addArrangedSubview(aspectRatioStack)
+        if case PresetFixedRatioType.canUseMultiplePresetFixedRatio = TTDConfig.cropperConfig.presetFixedRatioType {
+            view.addArrangedSubview(aspectRatioStack)
+        }
         view.addArrangedSubview(flipIcon)
         view.addArrangedSubview(resetView)
         view.alignment = .center
@@ -120,7 +122,7 @@ class CropToolbarMenu: UIView {
             aspectSelector.trailingAnchor.constraint(equalTo: trailingAnchor),
             aspectSelector.centerYAnchor.constraint(equalTo: hStack.centerYAnchor)
         ])
-        aspectRatioLabel.text = "Original"
+        aspectRatioLabel.text = aspectSelector.name(for: aspectSelector.selectedOption)
         aspectSelector.alpha = 0
     }
 

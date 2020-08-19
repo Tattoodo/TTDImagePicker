@@ -23,7 +23,7 @@ class FixedRatioManager {
         if ratioOptions.contains(.original) {
             appendToTail(ratioItem: getOriginalRatioItem())
         }
-        
+
         if ratioOptions.contains(.square) {
             let squareText = "Square"
             let square = (squareText, 1.0, squareText, 1.0)
@@ -33,7 +33,7 @@ class FixedRatioManager {
         if ratioOptions.contains(.extraDefaultRatios) {
             addExtraDefaultRatios()
         }
-        
+
         if ratioOptions.contains(.custom) {
             appendToTail(ratioItems: customRatios)
         }

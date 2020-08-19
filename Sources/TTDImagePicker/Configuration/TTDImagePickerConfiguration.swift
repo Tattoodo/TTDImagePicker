@@ -19,6 +19,8 @@ public struct TTDImagePickerConfiguration {
     
     // Video configuration
     public var video = TTDConfigVideo()
+
+    public var cropperConfig = CropperConfig()
     
     // Gallery configuration
     public var gallery = TTDConfigSelectionsGallery()
