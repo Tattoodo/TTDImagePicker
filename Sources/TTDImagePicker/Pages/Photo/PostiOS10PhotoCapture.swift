@@ -41,17 +41,11 @@ class PostiOS10PhotoCapture: NSObject, TTDPhotoCapture, AVCapturePhotoCaptureDel
             if deviceInput.device.isFlashAvailable {
                 switch currentFlashMode {
                 case .auto:
-                    if photoOutput.supportedFlashModes.contains(.auto) {
-                        settings.flashMode = .auto
-                    }
+                    settings.flashMode = .auto
                 case .off:
-                    if photoOutput.supportedFlashModes.contains(.off) {
-                        settings.flashMode = .off
-                    }
+                    settings.flashMode = .off
                 case .on:
-                    if photoOutput.supportedFlashModes.contains(.on) {
-                        settings.flashMode = .on
-                    }
+                    settings.flashMode = .on
                 }
             }
         }

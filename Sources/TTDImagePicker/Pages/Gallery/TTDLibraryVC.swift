@@ -249,7 +249,7 @@ public class TTDLibraryVC: UIViewController, TTDPermissionCheckable {
         switch status {
         case .authorized:
             block(true)
-        case .restricted, .denied:
+        case .restricted, .denied, .limited:
             let popup = TTDPermissionDeniedPopup()
             let alert = popup.popup(cancelBlock: {
                 block(false)
