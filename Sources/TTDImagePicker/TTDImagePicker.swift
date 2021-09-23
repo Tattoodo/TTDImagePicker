@@ -41,7 +41,15 @@ open class TTDImagePicker: UINavigationController {
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen // Force .fullScreen as iOS 13 now shows modals as cards by default.
         picker.imagePickerDelegate = self
-        navigationBar.tintColor = .labelColor
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            let navigationBar = UINavigationBar()
+            appearance.configureWithOpaqueBackground()
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.labelColor]
+            appearance.backgroundColor = .systemBackground
+            navigationBar.standardAppearance = appearance;
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -55,7 +63,7 @@ override open func viewDidLoad() {
         }
         viewControllers = [picker]
         setupLoadingView()
-        navigationBar.isTranslucent = false
+//        navigationBar.isTranslucent = false
 
         picker.didSelectItems = { [weak self] items in
             // Use Fade transition instead of default push animation
