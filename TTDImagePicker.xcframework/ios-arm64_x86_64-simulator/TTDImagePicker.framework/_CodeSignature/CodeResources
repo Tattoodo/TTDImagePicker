@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		ObXhxrI07MYgYvLsJXJdpEJCbwQ=
+		BaEaqw878s0tKJd1dZvKrfZ88/I=
 		</data>
 		<key>Headers/TTDImagePicker-Swift.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		B8+/20wJqZg8sfwNhyB6WBgLLaQ=
+		5WOwhRbzTWmvZX4+GAVARlnsEEk=
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		B8+/20wJqZg8sfwNhyB6WBgLLaQ=
+		5WOwhRbzTWmvZX4+GAVARlnsEEk=
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		d0TPpJpnNThbowyfFN0vluG6fG8=
+		BHBjRkiOcROHneC91YIzR0nXglU=
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		d0TPpJpnNThbowyfFN0vluG6fG8=
+		BHBjRkiOcROHneC91YIzR0nXglU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -245,7 +245,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kEkHin0ivC8uKmedcZcGymvG06qOD7jiTREk/O2OfyY=
+			hKJHBJ0M6kiy1YoEHKXJ3ICJBjqrD49jLZYsXeLOY7U=
 			</data>
 		</dict>
 		<key>Headers/TTDImagePicker-Swift.h</key>
@@ -273,7 +273,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SXJgoOw4jJwQYqtz4CNYewGPpyozZlj6yrw9+kq7/M0=
+			9l6WjW12DE59RnL8F4s9dbdptW3Kt/yve6kYn6zTn0c=
 			</data>
 		</dict>
 		<key>Modules/TTDImagePicker.swiftmodule/arm64.swiftdoc</key>
@@ -294,7 +294,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SXJgoOw4jJwQYqtz4CNYewGPpyozZlj6yrw9+kq7/M0=
+			9l6WjW12DE59RnL8F4s9dbdptW3Kt/yve6kYn6zTn0c=
 			</data>
 		</dict>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -315,7 +315,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0uLZGStnP61ugcUIKeaSzTASCDDifMt7hiaqPINhvgg=
+			GOnvImCFZ3n4jai9zg07JwJ/Gob/LEJFtO744I1mlYc=
 			</data>
 		</dict>
 		<key>Modules/TTDImagePicker.swiftmodule/x86_64.swiftdoc</key>
@@ -336,7 +336,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0uLZGStnP61ugcUIKeaSzTASCDDifMt7hiaqPINhvgg=
+			GOnvImCFZ3n4jai9zg07JwJ/Gob/LEJFtO744I1mlYc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
