@@ -17,11 +17,11 @@ public class CGAngle: NSObject, Comparable {
         }
     }
 
-    @inlinable public init(radians: CGFloat) {
+    public init(radians: CGFloat) {
         self.radians = radians
     }
     
-    @inlinable public init(degrees: CGFloat) {
+    public init(degrees: CGFloat) {
         radians = degrees / 180.0 * CGFloat.pi
     }
     
