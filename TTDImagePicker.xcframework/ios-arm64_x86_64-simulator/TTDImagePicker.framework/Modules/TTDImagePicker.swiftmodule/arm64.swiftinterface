@@ -1,0 +1,636 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name TTDImagePicker
+import AVFoundation
+import CoreImage
+import CoreMotion
+import Foundation
+import MobileCoreServices
+import Photos
+import Swift
+import UIKit
+import _Concurrency
+@objc public protocol TTDLibraryViewDelegate {
+  @objc func libraryViewDidTapNext()
+  @objc func libraryViewStartedLoadingImage()
+  @objc func libraryViewFinishedLoading()
+  @objc func libraryViewDidToggleMultipleSelection(enabled: Swift.Bool)
+  @objc func noPhotosForOptions()
+  @objc func didTapUploadImage()
+  @objc func didTapTakePicture()
+}
+public class TTDMediaPhoto {
+  public var image: UIKit.UIImage {
+    get
+  }
+  final public let originalImage: UIKit.UIImage
+  public var modifiedImage: UIKit.UIImage?
+  final public let fromCamera: Swift.Bool
+  final public let exifMeta: [Swift.String : Any]?
+  public var asset: Photos.PHAsset?
+  public init(image: UIKit.UIImage, exifMeta: [Swift.String : Any]? = nil, fromCamera: Swift.Bool = false, asset: Photos.PHAsset? = nil)
+  @objc deinit
+}
+public class TTDMediaVideo {
+  public var thumbnail: UIKit.UIImage
+  public var url: Foundation.URL
+  final public let fromCamera: Swift.Bool
+  public var asset: Photos.PHAsset?
+  public init(thumbnail: UIKit.UIImage, videoURL: Foundation.URL, fromCamera: Swift.Bool = false, asset: Photos.PHAsset? = nil)
+  @objc deinit
+}
+public enum TTDMediaItem {
+  case photo(p: TTDImagePicker.TTDMediaPhoto)
+  case video(v: TTDImagePicker.TTDMediaVideo)
+}
+extension TTDImagePicker.TTDMediaVideo {
+  public func fetchData(completion: (_ videoData: Foundation.Data) -> Swift.Void)
+}
+extension Swift.Array where Element == TTDImagePicker.TTDMediaItem {
+  public var singlePhoto: TTDImagePicker.TTDMediaPhoto? {
+    get
+  }
+  public var singleVideo: TTDImagePicker.TTDMediaVideo? {
+    get
+  }
+}
+public protocol IsMediaFilterVC : AnyObject {
+  var didSave: ((TTDImagePicker.TTDMediaItem) -> Swift.Void)? { get set }
+  var didCancel: (() -> Swift.Void)? { get set }
+}
+@objc @_Concurrency.MainActor(unsafe) open class TTDPhotoFiltersVC : UIKit.UIViewController, TTDImagePicker.IsMediaFilterVC, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) required public init(inputPhoto: TTDImagePicker.TTDMediaPhoto, isFromSelectionVC: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) public var inputPhoto: TTDImagePicker.TTDMediaPhoto!
+  @_Concurrency.MainActor(unsafe) public var isFromSelectionVC: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public var didSave: ((TTDImagePicker.TTDMediaItem) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public var didCancel: (() -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func loadView()
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
+  @objc deinit
+}
+extension TTDImagePicker.TTDPhotoFiltersVC : UIKit.UICollectionViewDataSource {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+}
+extension TTDImagePicker.TTDPhotoFiltersVC : UIKit.UICollectionViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+}
+@objc @_inheritsConvenienceInitializers public class RotationDialViewModel : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public struct TTDImagePickerConfiguration {
+  public static var shared: TTDImagePicker.TTDImagePickerConfiguration
+  public init()
+  public var isScrollToChangeModesEnabled: Swift.Bool
+  public var library: TTDImagePicker.TTDConfigLibrary
+  public var video: TTDImagePicker.TTDConfigVideo
+  public var cropperConfig: TTDImagePicker.CropperConfig
+  public var gallery: TTDImagePicker.TTDConfigSelectionsGallery
+  public var wordings: TTDImagePicker.TTDWordings
+  public var icons: TTDImagePicker.TTDIcons
+  public var colors: TTDImagePicker.TTDColors
+  public var onlySquareImagesFromCamera: Swift.Bool
+  public var usesFrontCamera: Swift.Bool
+  public var showsPhotoFilters: Swift.Bool
+  public var showsVideoTrimmer: Swift.Bool
+  public var shouldSaveNewPicturesToAlbum: Swift.Bool
+  public var albumName: Swift.String
+  public var startOnScreen: TTDImagePicker.TTDPickerScreen
+  public var screens: [TTDImagePicker.TTDPickerScreen]
+  public var showsCrop: Swift.Bool
+  public var targetImageSize: TTDImagePicker.TTDImageSize
+  public var overlayView: UIKit.UIView?
+  public var hidesStatusBar: Swift.Bool
+  public var hidesBottomBar: Swift.Bool
+  public var preferredStatusBarStyle: UIKit.UIStatusBarStyle
+  public var bottomMenuItemSelectedTextColour: UIKit.UIColor
+  public var bottomMenuItemUnSelectedTextColour: UIKit.UIColor
+  public var maxCameraZoomFactor: CoreGraphics.CGFloat
+  public var filters: [TTDImagePicker.TTDFilter]
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.compression")
+  public var videoCompression: Swift.String
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.fileType")
+  public var videoExtension: AVFoundation.AVFileType
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.recordingTimeLimit")
+  public var videoRecordingTimeLimit: Swift.Double
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.libraryTimeLimit")
+  public var videoFromLibraryTimeLimit: Swift.Double
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.minimumTimeLimit")
+  public var videoMinimumTimeLimit: Swift.Double
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.trimmerMaxDuration")
+  public var trimmerMaxDuration: Swift.Double
+  @available(iOS, obsoleted: 3.0.0, renamed: "video.trimmerMinDuration")
+  public var trimmerMinDuration: Swift.Double
+  @available(iOS, obsoleted: 3.0.0, renamed: "library.onlySquare")
+  public var onlySquareImagesFromLibrary: Swift.Bool
+  @available(iOS, obsoleted: 3.0.0, renamed: "library.onlySquare")
+  public var onlySquareFromLibrary: Swift.Bool
+  @available(iOS, obsoleted: 3.0.0, renamed: "targetImageSize")
+  public var libraryTargetImageSize: TTDImagePicker.TTDImageSize
+  @available(iOS, obsoleted: 3.0.0, renamed: "library.mediaType")
+  public var showsVideoInLibrary: Swift.Bool
+  @available(iOS, obsoleted: 3.0.0, renamed: "library.mediaType")
+  public var libraryMediaType: TTDImagePicker.TTDlibraryMediaType
+  @available(iOS, obsoleted: 3.0.0, renamed: "library.maxNumberOfItems")
+  public var maxNumberOfItems: Swift.Int
+}
+public struct TTDConfigLibrary {
+  public var options: Photos.PHFetchOptions?
+  public var onlySquare: Swift.Bool
+  public var isSquareByDefault: Swift.Bool
+  public var minWidthForItem: CoreGraphics.CGFloat?
+  public var defaultMultipleSelection: Swift.Bool
+  public var maxNumberOfItems: Swift.Int
+  public var minNumberOfItems: Swift.Int
+  public var numberOfItemsInRow: Swift.Int
+  public var spacingBetweenItems: CoreGraphics.CGFloat
+  public var skipSelectionsGallery: Swift.Bool
+  public var preselectedItems: [TTDImagePicker.TTDMediaItem]?
+}
+public struct TTDConfigVideo {
+  public var compression: Swift.String
+  public var fileType: AVFoundation.AVFileType
+  public var recordingTimeLimit: Swift.Double
+  public var libraryTimeLimit: Swift.Double
+  public var minimumTimeLimit: Swift.Double
+  public var trimmerMaxDuration: Swift.Double
+  public var trimmerMinDuration: Swift.Double
+}
+public struct TTDConfigSelectionsGallery {
+  public var hidesRemoveButton: Swift.Bool
+}
+public enum TTDlibraryMediaType {
+  case photo
+  case video
+  case photoAndVideo
+  public static func == (a: TTDImagePicker.TTDlibraryMediaType, b: TTDImagePicker.TTDlibraryMediaType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension TTDImagePicker.TTDLibraryVC : Photos.PHPhotoLibraryChangeObserver {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func photoLibraryDidChange(_ changeInstance: Photos.PHChange)
+}
+extension TTDImagePicker.TTDLibraryVC : UIKit.UICollectionViewDataSource {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+}
+extension TTDImagePicker.TTDLibraryVC : UIKit.UICollectionViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, shouldSelectItemAt indexPath: Foundation.IndexPath) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, shouldDeselectItemAt indexPath: Foundation.IndexPath) -> Swift.Bool
+}
+extension TTDImagePicker.TTDLibraryVC : UIKit.UICollectionViewDelegateFlowLayout {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, sizeForItemAt indexPath: Foundation.IndexPath) -> CoreGraphics.CGSize
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, minimumLineSpacingForSectionAt section: Swift.Int) -> CoreGraphics.CGFloat
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, layout collectionViewLayout: UIKit.UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Swift.Int) -> CoreGraphics.CGFloat
+}
+@objc @_hasMissingDesignatedInitializers @available(iOS 11.0, *)
+@_Concurrency.MainActor(unsafe) public class CropViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var didFinishCropping: ((Swift.Result<UIKit.UIImage, Swift.Error>) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public var image: UIKit.UIImage! {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var config: TTDImagePicker.CropperConfig
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLayoutSubviews()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var preferredScreenEdgesDeferringSystemGestures: UIKit.UIRectEdge {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillTransition(to size: CoreGraphics.CGSize, with coordinator: UIKit.UIViewControllerTransitionCoordinator)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+}
+extension TTDImagePicker.CropViewController {
+  @_Concurrency.MainActor(unsafe) public func crop()
+  @_Concurrency.MainActor(unsafe) public func process(_ image: UIKit.UIImage) -> UIKit.UIImage?
+}
+public protocol TTDImagePickerDelegate : AnyObject {
+  func noPhotos()
+}
+@objc @_Concurrency.MainActor(unsafe) open class TTDImagePicker : UIKit.UINavigationController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var supportedInterfaceOrientations: UIKit.UIInterfaceOrientationMask {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) public func didFinishPicking(completion: @escaping (_ items: [TTDImagePicker.TTDMediaItem], _ cancelled: Swift.Bool) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) weak public var imagePickerDelegate: TTDImagePicker.TTDImagePickerDelegate?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var preferredStatusBarStyle: UIKit.UIStatusBarStyle {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @objc convenience dynamic public init()
+  @_Concurrency.MainActor(unsafe) required public init(configuration: TTDImagePicker.TTDImagePickerConfiguration)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
+  @objc deinit
+}
+public protocol ThumbSelectorViewDelegate : AnyObject {
+  func didChangeThumbPosition(_ imageTime: CoreMedia.CMTime)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ThumbSelectorView : TTDImagePicker.AVAssetTimeSelector {
+  @_Concurrency.MainActor(unsafe) public var thumbBorderColor: UIKit.UIColor {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) weak public var delegate: TTDImagePicker.ThumbSelectorViewDelegate?
+  @_Concurrency.MainActor(unsafe) public var selectedTime: CoreMedia.CMTime? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_Concurrency.MainActor(unsafe) public class TTDLibraryVC : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) required public init(items: [TTDImagePicker.TTDMediaItem]?, mediaType: TTDImagePicker.TTDlibraryMediaType)
+  @_Concurrency.MainActor(unsafe) convenience public init(mediaType: TTDImagePicker.TTDlibraryMediaType)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func loadView()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor(unsafe) public func selectedMedia(photoCallback: @escaping (_ photo: TTDImagePicker.TTDMediaPhoto) -> Swift.Void, videoCallback: @escaping (_ videoURL: TTDImagePicker.TTDMediaVideo) -> Swift.Void, multipleItemsCallback: @escaping (_ items: [TTDImagePicker.TTDMediaItem]) -> Swift.Void)
+  @objc deinit
+}
+@objc public class CGAngle : ObjectiveC.NSObject, Swift.Comparable {
+  public static func < (lhs: TTDImagePicker.CGAngle, rhs: TTDImagePicker.CGAngle) -> Swift.Bool
+  public var radians: CoreGraphics.CGFloat
+  @inlinable public var degrees: CoreGraphics.CGFloat {
+    get {
+            return radians / CGFloat.pi * 180.0
+        }
+    set {
+            radians = newValue / 180.0 * CGFloat.pi
+        }
+  }
+  public init(radians: CoreGraphics.CGFloat)
+  public init(degrees: CoreGraphics.CGFloat)
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  public static func + (lhs: TTDImagePicker.CGAngle, rhs: TTDImagePicker.CGAngle) -> TTDImagePicker.CGAngle
+  public static func * (lhs: TTDImagePicker.CGAngle, rhs: TTDImagePicker.CGAngle) -> TTDImagePicker.CGAngle
+  public static func - (lhs: TTDImagePicker.CGAngle, rhs: TTDImagePicker.CGAngle) -> TTDImagePicker.CGAngle
+  prefix public static func - (rhs: TTDImagePicker.CGAngle) -> TTDImagePicker.CGAngle
+  public static func / (lhs: TTDImagePicker.CGAngle, rhs: TTDImagePicker.CGAngle) -> TTDImagePicker.CGAngle
+  @objc deinit
+}
+public struct RatioOptions : Swift.OptionSet {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let original: TTDImagePicker.RatioOptions
+  public static let square: TTDImagePicker.RatioOptions
+  public static let extraDefaultRatios: TTDImagePicker.RatioOptions
+  public static let custom: TTDImagePicker.RatioOptions
+  public static let all: TTDImagePicker.RatioOptions
+  public typealias ArrayLiteralElement = TTDImagePicker.RatioOptions
+  public typealias Element = TTDImagePicker.RatioOptions
+  public typealias RawValue = Swift.Int
+}
+public enum TTDPickerScreen {
+  case photoLibrary
+  case videoLibrary
+  case photo
+  public static func == (a: TTDImagePicker.TTDPickerScreen, b: TTDImagePicker.TTDPickerScreen) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class TTDVideoFiltersVC : UIKit.UIViewController, TTDImagePicker.IsMediaFilterVC {
+  @_Concurrency.MainActor(unsafe) public var inputVideo: TTDImagePicker.TTDMediaVideo!
+  @_Concurrency.MainActor(unsafe) public var inputAsset: AVFoundation.AVAsset {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var didSave: ((TTDImagePicker.TTDMediaItem) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public var didCancel: (() -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public class func initWith(video: TTDImagePicker.TTDMediaVideo, isFromSelectionVC: Swift.Bool) -> TTDImagePicker.TTDVideoFiltersVC
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) public func save()
+  @objc @_Concurrency.MainActor(unsafe) public func selectTrim()
+  @objc @_Concurrency.MainActor(unsafe) public func selectCover()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension TTDImagePicker.TTDVideoFiltersVC : TTDImagePicker.TrimmerViewDelegate {
+  @_Concurrency.MainActor(unsafe) public func positionBarStoppedMoving(_ playerTime: CoreMedia.CMTime)
+  @_Concurrency.MainActor(unsafe) public func didChangePositionBar(_ playerTime: CoreMedia.CMTime)
+}
+extension TTDImagePicker.TTDVideoFiltersVC : TTDImagePicker.ThumbSelectorViewDelegate {
+  @_Concurrency.MainActor(unsafe) public func didChangeThumbPosition(_ imageTime: CoreMedia.CMTime)
+}
+public protocol TTDSelectionsGalleryCellDelegate : AnyObject {
+  func selectionsGalleryCellDidTapRemove(cell: TTDImagePicker.TTDSelectionsGalleryCell)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class TTDSelectionsGalleryCell : UIKit.UICollectionViewCell {
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var isHighlighted: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+    @_Concurrency.MainActor(unsafe) @objc set
+  }
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class AVAssetTimeSelector : UIKit.UIView, UIKit.UIScrollViewDelegate {
+  @_Concurrency.MainActor(unsafe) public var maxDuration: Swift.Double {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) public var asset: AVFoundation.AVAsset? {
+    get
+    set
+  }
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) public func regenerateThumbnails()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class TTDPhotoSaver {
+  @objc deinit
+}
+infix operator &/ : DefaultPrecedence
+extension CoreGraphics.CGFloat {
+  public static func &/ (lhs: CoreGraphics.CGFloat, rhs: CoreGraphics.CGFloat) -> CoreGraphics.CGFloat
+}
+@objc @_Concurrency.MainActor(unsafe) public class TTDCameraVC : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) public var didCapturePhoto: ((UIKit.UIImage) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func loadView()
+  @objc required dynamic public init()
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+}
+@objc @_Concurrency.MainActor(unsafe) public class TTDVideoCaptureVC : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) public var didCaptureVideo: ((Foundation.URL) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc required dynamic public init()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func loadView()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) public func stopCamera()
+  @objc deinit
+}
+public func cropViewController(image: UIKit.UIImage, config: TTDImagePicker.CropperConfig = CropperConfig()) -> TTDImagePicker.CropViewController
+public func getCroppedImage(byCropInfo info: TTDImagePicker.CropInfo, andImage image: UIKit.UIImage) -> UIKit.UIImage?
+public typealias Transformation = (offset: CoreGraphics.CGPoint, rotation: CoreGraphics.CGFloat, scale: CoreGraphics.CGFloat, manualZoomed: Swift.Bool, maskFrame: CoreGraphics.CGRect)
+public typealias CropInfo = (translation: CoreGraphics.CGPoint, rotation: CoreGraphics.CGFloat, scale: CoreGraphics.CGFloat, cropSize: CoreGraphics.CGSize, imageViewSize: CoreGraphics.CGSize)
+public enum PresetTransformationType {
+  case none
+  case presetInfo(info: TTDImagePicker.Transformation)
+}
+public enum PresetFixedRatioType {
+  case alwaysUsingOnePresetFixedRatio(ratio: Swift.Double)
+  case canUseMultiplePresetFixedRatio
+}
+public enum CropShapeType {
+  case rect
+  case ellipse(maskOnly: Swift.Bool = false)
+  case roundedRect(radiusToShortSide: CoreGraphics.CGFloat, maskOnly: Swift.Bool = false)
+}
+public struct CropperConfig {
+  public var presetTransformationType: TTDImagePicker.PresetTransformationType
+  public var cropShapeType: TTDImagePicker.CropShapeType
+  public var ratioOptions: TTDImagePicker.RatioOptions
+  public var presetFixedRatioType: TTDImagePicker.PresetFixedRatioType
+  public var showRotationDial: Swift.Bool
+  public init()
+  public mutating func addCustomRatio(byHorizontalWidth width: Swift.Int, andHorizontalHeight height: Swift.Int)
+  public mutating func addCustomRatio(byVerticalWidth width: Swift.Int, andVerticalHeight height: Swift.Int)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class TTDVideoView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) final public let playImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var player: AVFoundation.AVPlayer {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @objc @_Concurrency.MainActor(unsafe) public func playerItemDidReachEnd(_ note: Foundation.Notification)
+  @objc deinit
+}
+extension TTDImagePicker.TTDVideoView {
+  @_Concurrency.MainActor(unsafe) public func loadVideo<T>(_ item: T)
+  @_Concurrency.MainActor(unsafe) public func pauseUnpause()
+  @_Concurrency.MainActor(unsafe) public func muteUnmute()
+  @_Concurrency.MainActor(unsafe) public func play()
+  @_Concurrency.MainActor(unsafe) public func pause()
+  @_Concurrency.MainActor(unsafe) public func stop()
+  @_Concurrency.MainActor(unsafe) public func deallocate()
+}
+extension TTDImagePicker.TTDVideoView {
+  @_Concurrency.MainActor(unsafe) public func setPreviewImage(_ image: UIKit.UIImage)
+  @_Concurrency.MainActor(unsafe) public func showPlayImage(show: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) public func addReachEndObserver()
+  @_Concurrency.MainActor(unsafe) public func removeReachEndObserver()
+}
+public struct TTDIcons {
+  public var shouldChangeDefaultBackButtonIcon: Swift.Bool
+  public var hideBackButtonTitle: Swift.Bool
+  public var backButtonIcon: UIKit.UIImage
+  public var arrowDownIcon: UIKit.UIImage
+  public var cropIcon: UIKit.UIImage
+  public var flashOnIcon: UIKit.UIImage
+  public var flashOffIcon: UIKit.UIImage
+  public var flashAutoIcon: UIKit.UIImage
+  public var loopIcon: UIKit.UIImage
+  public var multipleSelectionOffIcon: UIKit.UIImage
+  public var multipleSelectionOnIcon: UIKit.UIImage
+  public var capturePhotoImage: UIKit.UIImage
+  public var captureVideoImage: UIKit.UIImage
+  public var captureVideoOnImage: UIKit.UIImage
+  public var playImage: UIKit.UIImage
+  public var removeImage: UIKit.UIImage
+}
+public struct TTDWordings {
+  public var permissionPopup: TTDImagePicker.TTDWordings.PermissionPopup
+  public var videoDurationPopup: TTDImagePicker.TTDWordings.VideoDurationPopup
+  public var emptyView: TTDImagePicker.TTDWordings.EmptyView
+  public struct EmptyView {
+    public var noImagesTitle: Swift.String
+    public var noVideosTitle: Swift.String
+    public var noImagesMessage: Swift.String
+    public var noVideosMessage: Swift.String
+    public var noPhotosButtonTitle: Swift.String
+    public var noVideosButtonTitle: Swift.String
+  }
+  public struct PermissionPopup {
+    public var title: Swift.String
+    public var message: Swift.String
+    public var cancel: Swift.String
+    public var grantPermission: Swift.String
+  }
+  public struct VideoDurationPopup {
+    public var title: Swift.String
+    public var tooShortMessage: Swift.String
+    public var tooLongMessage: Swift.String
+  }
+  public var ok: Swift.String
+  public var done: Swift.String
+  public var cancel: Swift.String
+  public var save: Swift.String
+  public var processing: Swift.String
+  public var trim: Swift.String
+  public var cover: Swift.String
+  public var albumsTitle: Swift.String
+  public var libraryTitle: Swift.String
+  public var cameraTitle: Swift.String
+  public var videoTitle: Swift.String
+  public var next: Swift.String
+  public var filter: Swift.String
+  public var crop: Swift.String
+  public var warningMaxItemsLimit: Swift.String
+}
+@objc @_Concurrency.MainActor(unsafe) public class TTDSelectionsGalleryVC : UIKit.UIViewController, TTDImagePicker.TTDSelectionsGalleryCellDelegate {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) public var items: [TTDImagePicker.TTDMediaItem]
+  @_Concurrency.MainActor(unsafe) public var didFinishHandler: ((_ gallery: TTDImagePicker.TTDSelectionsGalleryVC, _ items: [TTDImagePicker.TTDMediaItem]) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func loadView()
+  @_Concurrency.MainActor(unsafe) required public init(items: [TTDImagePicker.TTDMediaItem], didFinishHandler: @escaping ((_ gallery: TTDImagePicker.TTDSelectionsGalleryVC, _ items: [TTDImagePicker.TTDMediaItem]) -> Swift.Void))
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) public func selectionsGalleryCellDidTapRemove(cell: TTDImagePicker.TTDSelectionsGalleryCell)
+  @objc deinit
+}
+extension TTDImagePicker.TTDSelectionsGalleryVC : UIKit.UICollectionViewDataSource {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, numberOfItemsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, cellForItemAt indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+}
+extension TTDImagePicker.TTDSelectionsGalleryVC : UIKit.UICollectionViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func collectionView(_ collectionView: UIKit.UICollectionView, didSelectItemAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+}
+public enum TTDImageSize {
+  case original
+  case cappedTo(size: CoreGraphics.CGFloat)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class PanGestureHelper : ObjectiveC.NSObject, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) public func resetToOriginalState()
+  @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @available(iOS 11.0, *)
+@_Concurrency.MainActor(unsafe) open class TTDPickerVC : TTDImagePicker.TTDBottomPager {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var prefersStatusBarHidden: Swift.Bool {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) public var didClose: (() -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public var didSelectItems: (([TTDImagePicker.TTDMediaItem]) -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@available(iOS 11.0, *)
+extension TTDImagePicker.TTDPickerVC : TTDImagePicker.TTDLibraryViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func didTapUploadImage()
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func didTapTakePicture()
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func libraryViewDidTapNext()
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func libraryViewStartedLoadingImage()
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func libraryViewFinishedLoading()
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func libraryViewDidToggleMultipleSelection(enabled: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func noPhotosForOptions()
+}
+public typealias FilterApplierType = ((_ image: CoreImage.CIImage) -> CoreImage.CIImage?)
+public struct TTDFilter {
+  public init(name: Swift.String, coreImageFilterName: Swift.String)
+  public init(name: Swift.String, applier: TTDImagePicker.FilterApplierType?)
+}
+extension TTDImagePicker.TTDFilter {
+  public static func coreImageFilter(name: Swift.String) -> TTDImagePicker.FilterApplierType
+  public static func clarendonFilter(foregroundImage: CoreImage.CIImage) -> CoreImage.CIImage?
+  public static func nashvilleFilter(foregroundImage: CoreImage.CIImage) -> CoreImage.CIImage?
+  public static func apply1977Filter(ciImage: CoreImage.CIImage) -> CoreImage.CIImage?
+  public static func toasterFilter(ciImage: CoreImage.CIImage) -> CoreImage.CIImage?
+  public static func hazeRemovalFilter(image: CoreImage.CIImage) -> CoreImage.CIImage?
+}
+@objc @_inheritsConvenienceInitializers @available(iOS 11.0, *)
+@_Concurrency.MainActor(unsafe) open class TTDBottomPager : UIKit.UIViewController, UIKit.UIScrollViewDelegate {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open func loadView()
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewWillEndDragging(_ scrollView: UIKit.UIScrollView, withVelocity velocity: CoreGraphics.CGPoint, targetContentOffset: Swift.UnsafeMutablePointer<CoreGraphics.CGPoint>)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public struct TTDColors {
+  public var tintColor: UIKit.UIColor
+  public var secondaryTintColor: UIKit.UIColor
+  public var navigationBarActivityIndicatorColor: UIKit.UIColor?
+  public var emptyViewMessageTextColor: UIKit.UIColor
+  public var emptyViewTitleTextColor: UIKit.UIColor
+  public var emptyViewImageContainerColor: UIKit.UIColor
+  public var emptyViewButtonTitleColor: UIKit.UIColor
+  public var emptyViewButtonBorderColor: UIKit.UIColor
+  public var multipleItemsSelectedCircleColor: UIKit.UIColor?
+  public var photoVideoScreenBackgroundColor: UIKit.UIColor
+  public var libraryScreenBackgroundColor: UIKit.UIColor
+  public var safeAreaBackgroundColor: UIKit.UIColor
+  public var assetViewBackgroundColor: UIKit.UIColor
+  public var filterBackgroundColor: UIKit.UIColor
+  public var selectionsBackgroundColor: UIKit.UIColor
+  public var bottomMenuItemBackgroundColor: UIKit.UIColor
+  public var bottomMenuItemSelectedTextColor: UIKit.UIColor
+  public var bottomMenuItemUnselectedTextColor: UIKit.UIColor
+  public var trimmerMainColor: UIKit.UIColor
+  public var trimmerHandleColor: UIKit.UIColor
+  public var positionLineColor: UIKit.UIColor
+  public var coverSelectorBorderColor: UIKit.UIColor
+  public var progressBarTrackColor: UIKit.UIColor
+  public var progressBarCompletedColor: UIKit.UIColor?
+}
+public protocol TrimmerViewDelegate : AnyObject {
+  func didChangePositionBar(_ playerTime: CoreMedia.CMTime)
+  func positionBarStoppedMoving(_ playerTime: CoreMedia.CMTime)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @IBDesignable @_Concurrency.MainActor(unsafe) public class TrimmerView : TTDImagePicker.AVAssetTimeSelector {
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var mainColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var handleColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var positionBarColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var maskColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) weak public var delegate: TTDImagePicker.TrimmerViewDelegate?
+  @_Concurrency.MainActor(unsafe) public var minDuration: Swift.Double
+  @_Concurrency.MainActor(unsafe) public func seek(to time: CoreMedia.CMTime)
+  @_Concurrency.MainActor(unsafe) public var startTime: CoreMedia.CMTime? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) public var endTime: CoreMedia.CMTime? {
+    get
+  }
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidEndDecelerating(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidEndDragging(_ scrollView: UIKit.UIScrollView, willDecelerate decelerate: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc public func scrollViewDidScroll(_ scrollView: UIKit.UIScrollView)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc deinit
+}
+extension TTDImagePicker.TTDlibraryMediaType : Swift.Equatable {}
+extension TTDImagePicker.TTDlibraryMediaType : Swift.Hashable {}
+extension TTDImagePicker.TTDPickerScreen : Swift.Equatable {}
+extension TTDImagePicker.TTDPickerScreen : Swift.Hashable {}

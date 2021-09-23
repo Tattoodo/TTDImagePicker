@@ -1,6 +1,7 @@
 import UIKit
 import AVFoundation
 
+@available(iOS 11.0, *)
 class PostiOS10PhotoCapture: NSObject, TTDPhotoCapture, AVCapturePhotoCaptureDelegate {
 
     let sessionQueue = DispatchQueue(label: "TTDCameraVCSerialQueue", qos: .background)

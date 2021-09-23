@@ -51,6 +51,7 @@ class TTDMultipleSelectionIndicator: UIView {
     }
 }
 
+@available(iOS 11.0, *)
 class TTDLibraryViewCell: UICollectionViewCell {
     
     var representedAssetIdentifier: String!

@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 final class TTDBottomPagerView: UIView {
     var headerBottomConstraint: NSLayoutConstraint!
     var header = TTDPagerMenu()

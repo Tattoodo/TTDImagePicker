@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 class ImageContainer: UIView {
 
     lazy private var imageView: UIImageView = {

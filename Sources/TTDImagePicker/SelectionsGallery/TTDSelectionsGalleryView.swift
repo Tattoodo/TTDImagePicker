@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 class TTDSelectionsGalleryView: UIView {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: TTDGalleryCollectionViewFlowLayout())

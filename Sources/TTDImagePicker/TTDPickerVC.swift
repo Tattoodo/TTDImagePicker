@@ -6,6 +6,7 @@ protocol ImagePickerDelegate: AnyObject {
     func noPhotos()
 }
 
+@available(iOS 11.0, *)
 open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
 
     private var currentLibraryVC: TTDLibraryVC? {
@@ -291,6 +292,7 @@ open class TTDPickerVC: TTDBottomPager, TTDBottomPagerDelegate {
     }
 }
 
+@available(iOS 11.0, *)
 extension TTDPickerVC: TTDLibraryViewDelegate {
     public func didTapUploadImage() {
         showPage(0)

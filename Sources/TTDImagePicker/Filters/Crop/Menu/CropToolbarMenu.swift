@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 class CropToolbarMenu: UIView {
     var onAspectRatioChange: (Double) -> () = { _ in }
     var onFlipAction: () -> Void = {}

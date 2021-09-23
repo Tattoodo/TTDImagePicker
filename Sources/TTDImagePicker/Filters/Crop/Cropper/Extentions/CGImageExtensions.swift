@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 extension CGImage {
     
     func transformedImage(_ transform: CGAffineTransform, zoomScale: CGFloat, sourceSize: CGSize, cropSize: CGSize, imageViewSize: CGSize) -> CGImage? {

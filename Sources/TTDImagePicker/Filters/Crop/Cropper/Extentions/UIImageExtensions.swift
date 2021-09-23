@@ -121,6 +121,7 @@ extension UIImage {
     
 }
 
+@available(iOS 11.0, *)
 extension UIImage {
     func getImageWithTransparentBackground(pathBuilder: (CGRect) -> UIBezierPath) -> UIImage? {
         guard let cgImage = cgImage else { return nil }

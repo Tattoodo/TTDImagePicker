@@ -4,6 +4,8 @@ protocol TTDBottomPagerDelegate: class {
     func pagerScrollViewDidScroll(_ scrollView: UIScrollView)
     func pagerDidSelectController(_ vc: UIViewController)
 }
+
+@available(iOS 11.0, *)
 open class TTDBottomPager: UIViewController, UIScrollViewDelegate {
     
     weak var delegate: TTDBottomPagerDelegate?

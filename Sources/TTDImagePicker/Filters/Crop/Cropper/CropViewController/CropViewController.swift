@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 public class CropViewController: UIViewController {
 
     public var didFinishCropping: ((Swift.Result<UIImage, Error>) -> Void)?

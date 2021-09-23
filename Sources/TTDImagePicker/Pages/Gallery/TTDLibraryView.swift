@@ -1,6 +1,7 @@
 import UIKit
 import Photos
 
+@available(iOS 11.0, *)
 final class TTDLibraryView: UIView {
     
     let assetZoomableViewMinimalVisibleHeight: CGFloat  = 50

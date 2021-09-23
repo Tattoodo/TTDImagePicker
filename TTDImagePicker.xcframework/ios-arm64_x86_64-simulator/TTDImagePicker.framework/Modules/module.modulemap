@@ -1,0 +1,4 @@
+framework module TTDImagePicker {
+  header "TTDImagePicker-Swift.h"
+  requires objc
+}

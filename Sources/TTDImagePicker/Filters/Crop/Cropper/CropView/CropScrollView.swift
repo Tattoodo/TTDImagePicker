@@ -1,5 +1,6 @@
 import UIKit
 
+@available(iOS 11.0, *)
 class CropScrollView: UIScrollView {
     
     weak var imageContainer: ImageContainer?
