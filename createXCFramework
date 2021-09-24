@@ -38,9 +38,13 @@ echo ""
 echo "------ SCRIPT STARTED TO REMOVE TEMP FILES ------"
 echo ""
 
+rm -r TTDImagePicker.xcframework
+
 cd build
 rm -r ios.xcarchive
 rm -r ios_sim.xcarchive
+
+mv TTDImagePicker.xcframework ../
 
 echo ""
 echo "------ XCFRAMEWORK IS READY TO USE ------"
