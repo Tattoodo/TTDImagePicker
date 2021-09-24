@@ -1,5 +1,18 @@
  #! /bin/bash
 
+wdir="$PWD"; [ "$PWD" = "/" ] && wdir=""
+case "$0" in
+  /*) scriptdir="${0}";;
+  *) scriptdir="$wdir/${0#./}";;
+esac
+scriptdir="${scriptdir%/*}"
+
+cd "$scriptdir"
+
+echo ""
+echo "------ SCRIPT STARTED TO BUILD XCFRAMEWORK ------"
+echo ""
+
 # iOS devices
 xcodebuild archive \
     -scheme TTDImagePicker \
@@ -15,9 +28,20 @@ xcodebuild archive \
     SKIP_INSTALL=NO
 BUILD_LIBRARY_FOR_DISTRIBUTION=YES
 
-
 # Combine to one Framework
 xcodebuild -create-xcframework \
     -framework "./build/ios.xcarchive/Products/Library/Frameworks/TTDImagePicker.framework" \
     -framework "./build/ios_sim.xcarchive/Products/Library/Frameworks/TTDImagePicker.framework" \
     -output "./build/TTDImagePicker.xcframework"
+
+echo ""
+echo "------ SCRIPT STARTED TO REMOVE TEMP FILES ------"
+echo ""
+
+cd build
+rm -r ios.xcarchive
+rm -r ios_sim.xcarchive
+
+echo ""
+echo "------ XCFRAMEWORK IS READY TO USE ------"
+echo ""
