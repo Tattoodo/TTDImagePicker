@@ -44,6 +44,12 @@ cd build
 rm -r ios.xcarchive
 rm -r ios_sim.xcarchive
 
+cd TTDImagePicker.xcframework
+
+find . -name "*.swiftinterface" -exec sed -i -e 's/TTDImagePicker\.//g' {} \;
+
+cd ../
+
 mv TTDImagePicker.xcframework ../
 
 echo ""
