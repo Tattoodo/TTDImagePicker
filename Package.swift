@@ -16,7 +16,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "TTDImagePicker",
-            path: "build/TTDImagePicker.xcframework"
+            path: "/build/TTDImagePicker.xcframework"
         )
     ]
 )
